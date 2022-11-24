@@ -167,6 +167,7 @@ section:nth-of-type(3){
     color: white;
     font-variant: normal;
     text-decoration: none;
+    border-bottom: 2px solid white;
 }
 
 .sidebar{
@@ -213,6 +214,7 @@ section:nth-of-type(3){
 
 #todoSidebar .linkText{
     color: #1E2022;
+    border-color: #1E2022;
 }
 
 </style>
