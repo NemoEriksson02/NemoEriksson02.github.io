@@ -22,10 +22,14 @@
     }
 </script>
 
+<head>
+    <title>ToDo List</title>
+</head>
+
 <body>
     <div class="background"></div>
     <div class="backContainer">
-        <a class="goBack" href="/">Go Back</a>
+        <a class="goBack" href="/#todo">Go Back</a>
     </div>
 <main>
     <header>
@@ -69,6 +73,8 @@
     height: 100%;
     width: 100%;
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: -1;
 }
 

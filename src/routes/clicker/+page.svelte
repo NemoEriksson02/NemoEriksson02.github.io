@@ -193,6 +193,10 @@
     let selectedTab = 'stats';
 </script>
 
+<head>
+    <title>Clicker of Cookies</title>
+</head>
+
 <body>
     <div class="backgroundColor"></div>
     <section id="cookieSection">
@@ -202,7 +206,7 @@
 
     <div id="messageDiv"><p class="slideDown" bind:this={messageElement}></p></div>
     <div id="backContainer">
-        <a href="/" id="backToMain">Go Back</a>
+        <a href="/#clicker" id="backToMain">Go Back</a>
     </div> 
 
     <section id="upgradeSection">

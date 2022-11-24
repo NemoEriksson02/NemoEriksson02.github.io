@@ -1,7 +1,28 @@
 <script>
 import { onMount } from "svelte";
 
+function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
 onMount(()=>{
+    let sections = [
+        document.getElementById('clicker'),
+        document.getElementById('todo'),
+        document.getElementById('other')
+    ]
+    let sectionLinks = [
+        document.getElementById('clickerLink'),
+        document.getElementById('todoLink'),
+        document.getElementById('otherLink'),
+    ]
+
     window.addEventListener('scroll', (e) => {
         let scrolled = window.pageYOffset;
         setTimeout(() => {
@@ -23,6 +44,17 @@ onMount(()=>{
                 }
             }
         }, 100);
+
+        for(let i = 0; i < sections.length; i++){
+            if (isInViewport(sections[i])){
+                sectionLinks[i].style.background = '#e0e0e0';
+                sectionLinks[i].style.color = '#1E2022';
+            }
+            else{
+                sectionLinks[i].style.background = 'none';
+                sectionLinks[i].style.color = '#e0e0e0';
+            }
+        }
     });
 });
 
@@ -30,15 +62,16 @@ onMount(()=>{
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+    <title>My Projects</title>
 </head>
 
 <body>
 
     <nav>
         <a class="navTitle" href="#home">Home</a>
-        <a href="#clicker">Cookie Clicker</a>
-        <a href="#todo">ToDo List</a>
-        <a href="#other">Other Projects</a>
+        <a href="#clicker" id="clickerLink">Cookie Clicker</a>
+        <a href="#todo" id="todoLink">ToDo List</a>
+        <a href="#other" id="otherLink">Other Projects</a>
     </nav>
 
     <div id="home">
@@ -68,6 +101,7 @@ onMount(()=>{
                 You can click <a class="linkText" href="/todo">here</a> to try it.
             </p>
         </div>
+        <img class="screenshot" alt="Screenshot of the ToDo list" src="/screenie2.png"/>
     </section>
 
     <section id="other">
@@ -75,10 +109,14 @@ onMount(()=>{
             <h1>Other projects</h1>
             <p class="sectionDescription">
                 My other projects, both old and <br/> 
-                new, projects can be found <a class="linkText" href="https://github.com/NemoEriksson02?tab=repositories">here</a> <br/>
+                new, projects can be found 
+                <a class="linkText" target="_blank" rel="noopener noreferrer" href="https://github.com/NemoEriksson02?tab=repositories">
+                    here
+                </a> <br/>
                 on my GitHub. <br/>
             </p>
         </div>
+        <img class="screenshot" alt="Screenshot of my GitHub profile" src="/screenie3.png">
     </section>
 
 </body>
@@ -135,6 +173,8 @@ nav a{
     text-decoration: none;
     font-size: 18px;
     margin-left: 45px;
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
 }
 
 a:hover{
@@ -142,9 +182,12 @@ a:hover{
 }
 
 .navTitle{
-    padding: 5px 10px 5px 10px;
+    padding: 0px 10px 2px 10px;
+    margin-top: 2px;
     font-size: 22px;
     margin-left: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
 }
 
 section{
@@ -157,10 +200,10 @@ section:nth-of-type(1){
     background: #dcd7c9;
 }
 section:nth-of-type(2){
-    background: #e2e2e2;
+    background: #c9d6df;
 }
-section:nth-of-type(3){
-    background: #2f2f2f;
+section:last-of-type{
+    background: #21262D;
 }
 
 .linkText{
@@ -199,6 +242,7 @@ section:nth-of-type(3){
     left: 55%;
     top: 22.5%;
     transform: rotate(6deg);
+    border-radius: 5px;
 }
 
 #cookieSidebar{
@@ -207,7 +251,7 @@ section:nth-of-type(3){
 }
 
 #todoSidebar{
-    background: #C9D6DF;
+    background: #52616B;
     border-right: 4px solid #1E2022;
     color: #1E2022;
 }
@@ -215,6 +259,11 @@ section:nth-of-type(3){
 #todoSidebar .linkText{
     color: #1E2022;
     border-color: #1E2022;
+}
+
+#otherSidebar{
+    background: #161B22;
+    border-right: 4px solid #EFF5FB;
 }
 
 </style>
