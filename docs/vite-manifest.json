@@ -130,12 +130,12 @@
     "file": "_app/immutable/assets/_page-503e382e.css",
     "src": "src/routes/+page.css"
   },
-  "src/routes/todo/+page.css": {
-    "file": "_app/immutable/assets/_page-a9c8eb13.css",
-    "src": "src/routes/todo/+page.css"
-  },
   "src/routes/clicker/+page.css": {
     "file": "_app/immutable/assets/_page-af3fd41b.css",
     "src": "src/routes/clicker/+page.css"
+  },
+  "src/routes/todo/+page.css": {
+    "file": "_app/immutable/assets/_page-a9c8eb13.css",
+    "src": "src/routes/todo/+page.css"
   }
 }
