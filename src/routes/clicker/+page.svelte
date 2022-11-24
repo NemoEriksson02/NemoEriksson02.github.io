@@ -317,7 +317,7 @@ button{
     transform: translate(-150px, -150px);
     z-index: 1;
     background:#dcd7c9;
-    background-image: url('/src/lib/cookieIcon.png');
+    background-image: url('/cookieIcon.png');
     background-size: cover;
     border: 5px solid #dcd7c9;
     border-radius: 50%;

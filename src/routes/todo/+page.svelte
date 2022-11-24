@@ -217,11 +217,4 @@ button{
     font-weight: 600;
 }
 
-#saveloadSection{
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 5%;
-}
-
 </style>

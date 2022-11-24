@@ -54,7 +54,7 @@ onMount(()=>{
                 Click <a class="linkText" href="/clicker">here</a> to play it.
             </p>
         </div>
-        <img class="screenshot" alt="Clicker of Cookies screenshot" src="/src/lib/screenie1.png"/>
+        <img class="screenshot" alt="Clicker of Cookies screenshot" src="/screenie1.png"/>
 
     </section>
 
