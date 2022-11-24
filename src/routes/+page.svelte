@@ -138,6 +138,10 @@ onMount(()=>{
     cursor: default;
 }
 
+*::selection{
+    user-select: none;
+}
+
 body{
     height: 200vh;
     width: 100%;
@@ -168,6 +172,13 @@ nav .navTitle, a{
     font-variant: small-caps;
 }
 
+h1::selection, 
+p::selection, 
+a::selection{
+    background: darkslategray;
+    color: #e0e0e0;
+}
+
 nav a{
     color: #e0e0e0;
     text-decoration: none;
@@ -175,6 +186,7 @@ nav a{
     margin-left: 45px;
     padding: 0 10px 0 10px;
     border-radius: 5px;
+    user-select: none;
 }
 
 a:hover{
