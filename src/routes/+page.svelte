@@ -23,24 +23,24 @@ onMount(()=>{
         document.getElementById('otherLink'),
     ]
 
-    window.addEventListener('scroll', (e) => {
+    window.addEventListener('scroll', () => {
         let scrolled = window.pageYOffset;
+
         setTimeout(() => {
             if (scrolled == window.pageYOffset) {
-                if (
-                scrolled % window.innerHeight >=
-                window.innerHeight / 2
-                ) {
-                    window.scrollBy(
-                        0,
-                        window.innerHeight -
-                        (scrolled % window.innerHeight),
-                    );
+                if ( scrolled % window.innerHeight >= window.innerHeight / 2) {
+                    window.scrollBy({
+                        left: 0,
+                        top: window.innerHeight - (scrolled % window.innerHeight),
+                        behavior: 'smooth'
+                    })
                 } else {
-                    window.scrollBy(
-                        0,
-                        -(scrolled % window.innerHeight),
-                    );
+
+                    window.scrollBy({
+                        left: 0,
+                        top: -(scrolled%window.innerHeight),
+                        behavior: 'smooth'
+                    })
                 }
             }
         }, 100);
@@ -55,6 +55,16 @@ onMount(()=>{
                 sectionLinks[i].style.color = '#e0e0e0';
             }
         }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
     });
 });
 
