@@ -11,7 +11,31 @@ function isInViewport(el) {
     );
 }
 
+function writeText(el, text, written, index, delay){
+    setTimeout(()=>{
+        let interval = setInterval(() => {
+            written += text[index];
+            index += 1;
+            el.innerText = written;
+            if(written == text){
+                clearInterval(interval);
+                return;
+            }
+        }, 1200/text.Length);
+    }, delay);
+}
+
 onMount(()=>{
+    let abtTextEl = document.getElementById('aboutText');
+    let infTextEl = document.getElementById('knowledgeText');
+    let proTextEl = document.getElementById('projectsText');
+    writeText(abtTextEl, abtTextEl.innerText, '', 0, 1000);
+    writeText(infTextEl, infTextEl.innerText, '', 0, 800);
+    writeText(proTextEl, proTextEl.innerText, '', 0, 1200);
+    abtTextEl.innerText = '';
+    infTextEl.innerText = '';
+    proTextEl.innerText = '';
+
     let sections = [
         document.getElementById('clicker'),
         document.getElementById('todo'),
@@ -96,14 +120,10 @@ onMount(()=>{
     </nav>
 
     <div id="home">
-        <div class="flexContainer">
-            <h1 class="centerTitle">∼About Me∽</h1>
-            <h1 class="centerTitle">∼Knowledge∽</h1>
-            <h1 class="centerTitle">∼Projects∽</h1>
-        </div>
-        <div class="flexContainer">
+        <div class="container">
             <div class="descriptionBox">
-                <p>
+                <h1 class="centerTitle">∼About Me∽</h1>
+                <p id="aboutText">
                     I first learned about programming in 5th grade when our teacher gave us the opportunity to
                     make small websites in HTML as a fun side-project. I soon gave up HTML for Python as it was
                     more fun than making websites at the time. Later I started learning other languages as well, 
@@ -112,7 +132,8 @@ onMount(()=>{
                 <article class="descriptionFooter">✎</article>
             </div>
             <div class="descriptionBox">
-                <p>
+                <h1 class="centerTitle">∼Knowledge∽</h1>
+                <p id="knowledgeText">
                     I know how to program in Python, C# and JavaScript as well as the basics in HTML, CSS and Lua. 
                     <br><br>
                     I have made some small games in Unity and PyGame but nothing releasable.
@@ -122,8 +143,9 @@ onMount(()=>{
                 <article class="descriptionFooter">✎</article>
             </div>
             <div class="descriptionBox">
-                <p>
-                    I have had some different projects and the latest one <i>(as of 28/11-22)</i> is the multiplayer
+                <h1 class="centerTitle">∼Projects∽</h1>
+                <p id="projectsText">
+                    I have had some different projects and the latest one (as of 28/11-22) is the multiplayer
                     calculator that can be found on my 
                     <a class="descriptionLink" 
                         target="_blank" 
@@ -218,6 +240,7 @@ body{
 :global(body){
     padding: 0;
     margin: 0;
+    min-width: 1360px;
 }
 
 nav{
@@ -238,7 +261,8 @@ nav .navTitle, a{
 
 h1::selection, 
 p::selection, 
-a::selection{
+a::selection,
+br::selection{
     background: #708090;
     color: #e0e0e0;
 }
@@ -276,23 +300,33 @@ section{
     height: 100vh;
 }
 
-.flexContainer{
-    display: flex;
-    justify-content: center;
+.container{
     position: relative;
     top: 45%;
-    gap: 10%;
 }
 
 .descriptionBox{
     height: 400px;
     width: 250px;
-    background: #bbbfc2ee;
-    border: 4px solid #bbbfc2ff;
+    background: #bbbfc2;
     border-radius: 20px;
-    position: relative;
+    position: absolute;
     top: 55%;
-    transform: translateY(-50%);
+    left: 50%;
+    margin-top: 80px;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    padding: 3px;
+    transition: .2s;
+}
+
+.descriptionBox:first-of-type{
+    animation: 1s slideLeft forwards;
+    z-index: 1;
+}
+.descriptionBox:last-of-type{
+    animation: 1s slideRight forwards;
+    z-index: 2;
 }
 
 .descriptionBox p{
@@ -305,12 +339,17 @@ section{
 
 .centerTitle{
     position: relative;
-    top: -250px;
+    top: 0px;
     width: 250px;
     text-align: center;
     vertical-align: middle;
     color: #1E2022;
     font-variant: small-caps;
+    animation: .5s spawnText forwards;
+    animation-delay: .6s;
+    height: 0;
+    z-index: -1;
+    opacity: 0;
 }
 
 .projectsText{
@@ -439,6 +478,35 @@ section:last-of-type{
 
 #other .projectsText:hover{
     color: #1E2022;
+}
+
+@keyframes slideLeft{
+    from{
+        left: 50%;
+    }
+    to{
+        left: 25%;
+    }
+}
+
+@keyframes slideRight{
+    from{
+        left: 50%;
+    }
+    to{
+        left: 75%;
+    }
+}
+
+@keyframes spawnText{
+    from{
+        top: 0;
+        opacity: 0;
+    }
+    to{
+        top: -100px;
+        opacity: 1;
+    }
 }
 
 </style>
