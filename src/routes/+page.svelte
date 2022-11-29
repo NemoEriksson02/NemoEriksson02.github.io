@@ -117,6 +117,7 @@ onMount(()=>{
         <a href="#clicker" id="clickerLink">Cookie Clicker</a>
         <a href="#todo" id="todoLink">ToDo List</a>
         <a href="#other" id="otherLink">Other Projects</a>
+        <p class="waterstamp">nemo eriksson</p>
     </nav>
 
     <div id="home">
@@ -146,11 +147,7 @@ onMount(()=>{
                 <h1 class="centerTitle">∼Projects∽</h1>
                 <p id="projectsText">
                     I have had some different projects and the latest one (as of 28/11-22) is the multiplayer
-                    calculator that can be found on my 
-                    <a class="descriptionLink" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        href="https://github.com/NemoEriksson02?tab=repositories">GitHub</a>.
+                    calculator that can be found on my GitHub.
                     <br><br>
                     The projects on this page are made in an attempt to learn more about web design and HTML.
                 </p>
@@ -250,7 +247,7 @@ nav{
     z-index: 10;
     background: #1E2022;
     color: #e0e0e0;
-    width: 100%;
+    width: 100vw;
     border-bottom: 3px solid #e0e0e0;
 }
 
@@ -387,12 +384,6 @@ section{
     background-color: #c7c7c9;
 }
 
-.descriptionLink{
-    font-variant: normal;
-    text-decoration: none;
-    color: #404e4f;
-}
-
 .descriptionFooter{
     user-select: none;
     position: absolute;
@@ -478,6 +469,20 @@ section:last-of-type{
 
 #other .projectsText:hover{
     color: #1E2022;
+}
+
+.waterstamp{
+    display: inline-block;
+    position: absolute;
+    height: 0;
+    top: 30px;
+    right: 20%;
+    font-variant: small-caps;
+    letter-spacing: 25px;
+    color: #292929;
+    font-size: 18px;
+    font-weight: 900;
+    user-select: none;
 }
 
 @keyframes slideLeft{
