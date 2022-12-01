@@ -25,31 +25,38 @@ function writeText(el, text, written, index, delay){
     }, delay);
 }
 
+let clickerSectionEl;
+let clickerLinkEl;
+let todoSectionEl;
+let todoLinkEl;
+let otherSectionEl;
+let otherLinkEl;
+let abtTextEl;
+let infTextEl;
+let proTextEl;
+
 onMount(()=>{
-    let abtTextEl = document.getElementById('aboutText');
-    let infTextEl = document.getElementById('knowledgeText');
-    let proTextEl = document.getElementById('projectsText');
-    writeText(abtTextEl, abtTextEl.innerText, '', 0, 1000);
-    writeText(infTextEl, infTextEl.innerText, '', 0, 800);
-    writeText(proTextEl, proTextEl.innerText, '', 0, 1200);
+    writeText(abtTextEl, abtTextEl.innerText, '', 0, 1500);
+    writeText(infTextEl, infTextEl.innerText, '', 0, 1650);
+    writeText(proTextEl, proTextEl.innerText, '', 0, 1800);
     abtTextEl.innerText = '';
     infTextEl.innerText = '';
     proTextEl.innerText = '';
 
     let sections = [
-        document.getElementById('clicker'),
-        document.getElementById('todo'),
-        document.getElementById('other')
+        clickerSectionEl,
+        todoSectionEl,
+        otherSectionEl
     ]
     let sectionLinks = [
-        document.getElementById('clickerLink'),
-        document.getElementById('todoLink'),
-        document.getElementById('otherLink'),
+        clickerLinkEl,
+        todoLinkEl,
+        otherLinkEl
     ]
 
     window.addEventListener('scroll', () => {
         let scrolled = window.pageYOffset;
-
+        
         setTimeout(() => {
             if (scrolled == window.pageYOffset) {
                 if ( scrolled % window.innerHeight >= window.innerHeight / 2) {
@@ -84,20 +91,13 @@ onMount(()=>{
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
         });
     });
 
-    if (
-        (window.performance.navigation && window.performance.navigation.type === 1) ||
-        window.performance
-        .getEntriesByType('navigation')
-        .map((nav) => nav.type)
-        .includes('reload')
-    ){
+    if (window.performance.getEntriesByType('navigation').map((nav) => nav.type).includes('reload')){
         window.location.href = '/';
     }
 
@@ -114,9 +114,9 @@ onMount(()=>{
 
     <nav>
         <a class="navTitle" href="#home">Home</a>
-        <a href="#clicker" id="clickerLink">Cookie Clicker</a>
-        <a href="#todo" id="todoLink">ToDo List</a>
-        <a href="#other" id="otherLink">Other Projects</a>
+        <a href="#clicker" bind:this={clickerLinkEl}>Cookie Clicker</a>
+        <a href="#todo" bind:this={todoLinkEl}>ToDo List</a>
+        <a href="#other" bind:this={otherLinkEl}>Other Projects</a>
         <p class="waterstamp">nemo eriksson</p>
     </nav>
 
@@ -124,18 +124,21 @@ onMount(()=>{
         <div class="container">
             <div class="descriptionBox">
                 <h1 class="centerTitle">∼About Me∽</h1>
-                <p id="aboutText">
-                    I first learned about programming in 5th grade when our teacher gave us the opportunity to
-                    make small websites in HTML as a fun side-project. I soon gave up HTML for Python as it was
-                    more fun than making websites at the time. Later I started learning other languages as well, 
-                    like Javascript, Lua and C#.
+                <p bind:this={abtTextEl}>
+                    My name is Nemo Eriksson and I first learned about programming in 5th grade. I like playing
+                    online games such as Valorant, Minecraft and  Magic: the Gathering. 
+                    I also like nature photography even tho I'm not the best at it. 
+                    <br><br>
+                    I have two pets: one cat and one dog. This made me come to the conclusion that cats 
+                    are better.
                 </p>
                 <article class="descriptionFooter">✎</article>
             </div>
             <div class="descriptionBox">
                 <h1 class="centerTitle">∼Knowledge∽</h1>
-                <p id="knowledgeText">
-                    I know how to program in Python, C# and JavaScript as well as the basics in HTML, CSS and Lua. 
+                <p bind:this={infTextEl}>
+                    I know how to program in Python, C# and JavaScript and the basics in HTML, CSS and Lua but 
+                    I'm a fast learner. 
                     <br><br>
                     I have made some small games in Unity and PyGame but nothing releasable.
                     <br><br>
@@ -145,7 +148,7 @@ onMount(()=>{
             </div>
             <div class="descriptionBox">
                 <h1 class="centerTitle">∼Projects∽</h1>
-                <p id="projectsText">
+                <p bind:this={proTextEl}>
                     I have had some different projects and the latest one (as of 28/11-22) is the multiplayer
                     calculator that can be found on my GitHub.
                     <br><br>
@@ -157,7 +160,7 @@ onMount(()=>{
         <a class="projectsText" href="#clicker">˅ Projects ˅</a>
     </div>
 
-    <section id="clicker">
+    <section id="clicker" bind:this={clickerSectionEl}>
         <div id="cookieSidebar" class="sidebar">
             <h1>Clicker of Cookies</h1>
             <p class="sectionDescription">
@@ -171,7 +174,7 @@ onMount(()=>{
         <a class="projectsText" href="#todo">˅ ToDo list ˅</a>
     </section>
 
-    <section id="todo">
+    <section id="todo" bind:this={todoSectionEl}>
         <div id="todoSidebar" class="sidebar">
             <h1>ToDo list</h1>
             <p class="sectionDescription">
@@ -186,7 +189,7 @@ onMount(()=>{
         <a class="projectsText" href="#other">˅ Other Projects ˅</a>
     </section>
 
-    <section id="other">
+    <section id="other" bind:this={otherSectionEl}>
         <div id="otherSidebar" class="sidebar">
             <h1>Other projects</h1>
             <p class="sectionDescription">
@@ -272,6 +275,7 @@ nav a{
     padding: 0 10px 0 10px;
     border-radius: 5px;
     user-select: none;
+    transition: .2s all;
 }
 
 a:hover{
@@ -314,16 +318,23 @@ section{
     transform: translate(-50%, -50%);
     z-index: 3;
     padding: 3px;
-    transition: .2s;
+    transition: .3s;
 }
 
 .descriptionBox:first-of-type{
-    animation: 1s slideLeft forwards;
+    animation: 2s slideLeft forwards;
     z-index: 1;
 }
 .descriptionBox:last-of-type{
-    animation: 1s slideRight forwards;
+    animation: 2s slideRight forwards;
     z-index: 2;
+}
+.descriptionBox:nth-child(even){
+    animation: 1s spawnBox forwards;
+}
+
+.descriptionBox:hover{
+    box-shadow: 1px 1px 5px #708090;
 }
 
 .descriptionBox p{
@@ -332,6 +343,12 @@ section{
     position: relative;
     top: 20px;
     font-size: 18px;
+}
+
+.descriptionBox article{
+    opacity: 0;
+    animation: .2s show forwards;
+    animation-delay: 1.25s;
 }
 
 .centerTitle{
@@ -343,10 +360,11 @@ section{
     color: #1E2022;
     font-variant: small-caps;
     animation: .5s spawnText forwards;
-    animation-delay: .6s;
+    animation-delay: 1.8s;
     height: 0;
     z-index: -1;
     opacity: 0;
+    pointer-events: none;
 }
 
 .projectsText{
@@ -357,14 +375,14 @@ section{
     height: 90px;
     text-align: center;
     transform: translateX(-50%);
-    font-size: 23px;
+    font-size: 24px;
     color: #1E2022;
     text-decoration: none;
     letter-spacing: 4px;
     user-select: none;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
-    padding: 5px;
+    padding: 8px;
     opacity: .9;
     transition: .25s all;
 }
@@ -376,6 +394,7 @@ section{
     border-radius: 0;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
+    font-size: 23px;
 }
 
 .projectsText:hover{
@@ -479,27 +498,75 @@ section:last-of-type{
     right: 20%;
     font-variant: small-caps;
     letter-spacing: 25px;
-    color: #292929;
+    color: #2b2b2b;
     font-size: 18px;
     font-weight: 900;
     user-select: none;
+    transition: .2s all;
+}
+.waterstamp:hover{
+    color: #e0e0e0;
+}
+
+@keyframes spawnBox{
+    0%{
+        height: 5px;
+        width: 5px;
+    }
+    60%{
+        height: 400px;
+    }
+    70%{
+        width: 5px;
+    }
+    100%{
+        width: 250px;
+    }
 }
 
 @keyframes slideLeft{
-    from{
+    0%{
         left: 50%;
+        height: 5px;
+        width: 5px;
     }
-    to{
+    35%{
+        left: 50%;
+        translate: translateX(-125px);
+    }
+    40%{
+        height: 400px;
+        width: 5px;
+    }
+    65%{
+        width: 250px;
+    }
+    100%{
         left: 25%;
+        translate: translateX(0);
     }
 }
 
 @keyframes slideRight{
-    from{
+    0%{
         left: 50%;
+        height: 5px;
+        width: 5px;
     }
-    to{
+    35%{
+        left: 50%;
+        translate: translateX(125px);
+    }
+    40%{
+        height: 400px;
+        width: 5px;
+    }
+    65%{
+        width: 250px;
+    }
+    100%{
         left: 75%;
+        translate: translateX(0);
     }
 }
 
@@ -512,6 +579,11 @@ section:last-of-type{
         top: -100px;
         opacity: 1;
     }
+}
+
+@keyframes show{
+    from{ opacity: 0; }
+    to{ opacity: 1; }
 }
 
 </style>
