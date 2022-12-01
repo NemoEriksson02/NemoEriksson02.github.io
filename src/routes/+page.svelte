@@ -1,6 +1,8 @@
 <script>
 import { onMount } from "svelte";
 
+/* ===== Functions ===== */
+
 function isInViewport(el) {
     const rect = el.getBoundingClientRect();
     return (
@@ -25,6 +27,7 @@ function writeText(el, text, written, index, delay){
     }, delay);
 }
 
+/* ===== Variables ===== */
 let clickerSectionEl;
 let clickerLinkEl;
 let todoSectionEl;
@@ -56,7 +59,9 @@ onMount(()=>{
 
     window.addEventListener('scroll', () => {
         let scrolled = window.pageYOffset;
-        
+    
+        // Smoothly scroll to nearest page height (100vh) 100ms after
+        //  user stopped scrolling
         setTimeout(() => {
             if (scrolled == window.pageYOffset) {
                 if ( scrolled % window.innerHeight >= window.innerHeight / 2) {
@@ -66,7 +71,6 @@ onMount(()=>{
                         behavior: 'smooth'
                     })
                 } else {
-
                     window.scrollBy({
                         left: 0,
                         top: -(scrolled%window.innerHeight),
@@ -76,6 +80,8 @@ onMount(()=>{
             }
         }, 100);
 
+        // Change background of the navigation bar section links
+        //  to highlight current section
         for(let i = 0; i < sections.length; i++){
             if (isInViewport(sections[i])){
                 sectionLinks[i].style.background = '#e0e0e0';
@@ -89,6 +95,8 @@ onMount(()=>{
     });
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Prevent the url to end in /#[elementId] and
+        //  scrolls to targeted section
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             document.querySelector(this.getAttribute('href')).scrollIntoView({
@@ -97,12 +105,12 @@ onMount(()=>{
         });
     });
 
+    // Remove the url to end with /#[element] when reloading page
+    //  because it looks better
     if (window.performance.getEntriesByType('navigation').map((nav) => nav.type).includes('reload')){
         window.location.href = '/';
     }
-
 });
-
 </script>
 
 <head>
@@ -111,7 +119,7 @@ onMount(()=>{
 </head>
 
 <body>
-
+    <!-- ===== Navigation Bar ===== -->
     <nav>
         <a class="navTitle" href="#home">Home</a>
         <a href="#clicker" bind:this={clickerLinkEl}>Cookie Clicker</a>
@@ -120,6 +128,7 @@ onMount(()=>{
         <p class="waterstamp">nemo eriksson</p>
     </nav>
 
+    <!-- ===== Landing page/Home section ===== -->
     <div id="home">
         <div class="container">
             <div class="descriptionBox">
@@ -160,6 +169,7 @@ onMount(()=>{
         <a class="projectsText" href="#clicker">˅ Projects ˅</a>
     </div>
 
+    <!-- ===== Project sections ===== -->
     <section id="clicker" bind:this={clickerSectionEl}>
         <div id="cookieSidebar" class="sidebar">
             <h1>Clicker of Cookies</h1>
@@ -204,12 +214,10 @@ onMount(()=>{
         <img class="screenshot" alt="Screenshot of my GitHub profile" src="/screenie3.png">
         <a class="projectsText upper" href="#todo">˄ ToDo list ˄</a>
     </section>
-
 </body>
 
 
 <style>
-   
 *{
     margin: 0;
     padding: 0;
@@ -219,11 +227,9 @@ onMount(()=>{
     letter-spacing: .08em;
     caret-color: transparent;
 }
-
 *:hover{
     cursor: default;
 }
-
 *::selection{
     user-select: none;
 }
@@ -236,7 +242,6 @@ body{
     padding: 0;
     background: white;
 }
-
 :global(body){
     padding: 0;
     margin: 0;
@@ -291,16 +296,6 @@ a:hover{
     border-radius: 5px;
 }
 
-section{
-    position: relative;
-    height: 100vh;
-}
-
-#home{
-    background: #d0d0d0;
-    height: 100vh;
-}
-
 .container{
     position: relative;
     top: 45%;
@@ -320,7 +315,6 @@ section{
     padding: 3px;
     transition: .3s;
 }
-
 .descriptionBox:first-of-type{
     animation: 2s slideLeft forwards;
     z-index: 1;
@@ -332,7 +326,6 @@ section{
 .descriptionBox:nth-child(even){
     animation: 1s spawnBox forwards;
 }
-
 .descriptionBox:hover{
     box-shadow: 1px 1px 5px #708090;
 }
@@ -386,6 +379,11 @@ section{
     opacity: .9;
     transition: .25s all;
 }
+.projectsText:hover{
+    letter-spacing: 8px;
+    opacity: 1;
+    background-color: #c7c7c9;
+}
 
 .projectsText.upper{
     top: 15px;
@@ -397,12 +395,6 @@ section{
     font-size: 23px;
 }
 
-.projectsText:hover{
-    letter-spacing: 8px;
-    opacity: 1;
-    background-color: #c7c7c9;
-}
-
 .descriptionFooter{
     user-select: none;
     position: absolute;
@@ -411,6 +403,10 @@ section{
     font-size: 15px;
 }
 
+section{
+    position: relative;
+    height: 100vh;
+}
 section:nth-of-type(1){
     background: #dcd7c9;
 }
@@ -460,6 +456,31 @@ section:last-of-type{
     border-radius: 5px;
 }
 
+.waterstamp{
+    display: inline-block;
+    position: absolute;
+    height: 0;
+    top: 30px;
+    right: 20%;
+    font-variant: small-caps;
+    letter-spacing: 25px;
+    color: #2b2b2b;
+    font-size: 18px;
+    font-weight: 900;
+    user-select: none;
+    transition: .2s all;
+}
+.waterstamp:hover{
+    color: #e0e0e0;
+}
+
+/* ===== ID-selectors ===== */
+
+#home{
+    background: #d0d0d0;
+    height: 100vh;
+}
+
 #cookieSidebar{
     background: #404e4f;
     border-right: 4px solid #a27b5c;
@@ -490,23 +511,7 @@ section:last-of-type{
     color: #1E2022;
 }
 
-.waterstamp{
-    display: inline-block;
-    position: absolute;
-    height: 0;
-    top: 30px;
-    right: 20%;
-    font-variant: small-caps;
-    letter-spacing: 25px;
-    color: #2b2b2b;
-    font-size: 18px;
-    font-weight: 900;
-    user-select: none;
-    transition: .2s all;
-}
-.waterstamp:hover{
-    color: #e0e0e0;
-}
+/* ===== ANIMATIONS =====*/
 
 @keyframes spawnBox{
     0%{
