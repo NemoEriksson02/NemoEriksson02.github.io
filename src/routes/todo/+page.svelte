@@ -1,7 +1,14 @@
 <script>
+    import { onMount } from "svelte";
+
     let items = [];  // List of all the ToDo-items text content
     let newItemText;
     let clickedItems = [];
+
+    function saveTasks(){
+        localStorage.setItem('items', JSON.stringify(items));
+        localStorage.setItem('completed', JSON.stringify(clickedItems));
+    }
 
     function addItem(){
         let itemText = newItemText.value;
@@ -9,17 +16,30 @@
             items.push(itemText);
             clickedItems.push(false);
             items = items;
+            saveTasks();
         }
     }
 
     function toggleClicked(index){
         clickedItems[index] = !clickedItems[index];
+        saveTasks();
     }
+
     function removeClicked(index){
         items.splice(index, 1);
         clickedItems.splice(index, 1);
         items = items;
+        saveTasks();
     }
+
+    onMount(()=>{
+        let temp_items = JSON.parse(localStorage.getItem('items'));
+        let temp_clickedItems = JSON.parse(localStorage.getItem('completed'))
+        if (temp_items!=null && temp_clickedItems!=null){
+            items = temp_items;
+            clickedItems = temp_clickedItems;
+        }
+    });
 </script>
 
 <head>

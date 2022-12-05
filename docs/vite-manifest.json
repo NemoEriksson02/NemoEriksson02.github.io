@@ -1,6 +1,6 @@
 {
   "node_modules/@sveltejs/kit/src/runtime/client/start.js": {
-    "file": "_app/immutable/start-8ec0b024.js",
+    "file": "_app/immutable/start-0e6b7941.js",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -33,14 +33,14 @@
     ]
   },
   "src/routes/+page.svelte": {
-    "file": "_app/immutable/components/pages/_page.svelte-94b81797.js",
+    "file": "_app/immutable/components/pages/_page.svelte-8737ae94.js",
     "src": "src/routes/+page.svelte",
     "isEntry": true,
     "imports": [
       "_index-e9075e69.js"
     ],
     "css": [
-      "_app/immutable/assets/_page-dc56eead.css"
+      "_app/immutable/assets/_page-0fd548c2.css"
     ]
   },
   "src/routes/clicker/+page.svelte": {
@@ -55,7 +55,7 @@
     ]
   },
   "src/routes/todo/+page.svelte": {
-    "file": "_app/immutable/components/pages/todo/_page.svelte-f26f9992.js",
+    "file": "_app/immutable/components/pages/todo/_page.svelte-32ae2321.js",
     "src": "src/routes/todo/+page.svelte",
     "isEntry": true,
     "imports": [
@@ -103,7 +103,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/2.js": {
-    "file": "_app/immutable/chunks/2-c8e90217.js",
+    "file": "_app/immutable/chunks/2-63d4fa65.js",
     "src": ".svelte-kit/generated/nodes/2.js",
     "isDynamicEntry": true,
     "imports": [
@@ -119,7 +119,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/4.js": {
-    "file": "_app/immutable/chunks/4-51fb5358.js",
+    "file": "_app/immutable/chunks/4-ed81c689.js",
     "src": ".svelte-kit/generated/nodes/4.js",
     "isDynamicEntry": true,
     "imports": [
@@ -127,15 +127,15 @@
     ]
   },
   "src/routes/+page.css": {
-    "file": "_app/immutable/assets/_page-dc56eead.css",
+    "file": "_app/immutable/assets/_page-0fd548c2.css",
     "src": "src/routes/+page.css"
-  },
-  "src/routes/todo/+page.css": {
-    "file": "_app/immutable/assets/_page-6c3302c5.css",
-    "src": "src/routes/todo/+page.css"
   },
   "src/routes/clicker/+page.css": {
     "file": "_app/immutable/assets/_page-af3fd41b.css",
     "src": "src/routes/clicker/+page.css"
+  },
+  "src/routes/todo/+page.css": {
+    "file": "_app/immutable/assets/_page-6c3302c5.css",
+    "src": "src/routes/todo/+page.css"
   }
 }

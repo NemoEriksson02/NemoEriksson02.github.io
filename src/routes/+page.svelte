@@ -94,17 +94,6 @@ onMount(()=>{
         }
     });
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        // Prevent the url to end in /#[elementId] and
-        //  scrolls to targeted section
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
     // Remove the url to end with /#[element] when reloading page
     //  because it looks better
     if (window.performance.getEntriesByType('navigation').map((nav) => nav.type).includes('reload')){
@@ -208,10 +197,19 @@ onMount(()=>{
                 <a class="linkText" target="_blank" rel="noopener noreferrer" href="https://github.com/NemoEriksson02?tab=repositories">
                     here
                 </a> <br/>
-                on my GitHub. <br/>
+                on my GitHub. <br/><br><br>
+                The calculator app can be found <br>
+                on my github. It is made in node<br>
+                with express-js. To try it, just <br>
+                download the files and type <br> 
+                <i>"node server.js"</i> to start it. <br>
+                You dont need to download the files <br>
+                to join it from another device once <br>
+                the server is running.
             </p>
         </div>
         <img class="screenshot" alt="Screenshot of my GitHub profile" src="/screenie3.png">
+        <img class="screenshot alt" alt="Multiplayer calculator screenshot" src="/screenie4.png">
         <a class="projectsText upper" href="#todo">˄ ToDo list ˄</a>
     </section>
 </body>
@@ -454,6 +452,12 @@ section:last-of-type{
     top: 22.5%;
     transform: rotate(6deg);
     border-radius: 5px;
+}
+.screenshot.alt{
+    top: 50%;
+    left: 30%;
+    scale: .8;
+    transform: rotateZ(-12deg);
 }
 
 .waterstamp{
