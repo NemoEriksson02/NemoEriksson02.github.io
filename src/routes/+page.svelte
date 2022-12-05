@@ -324,7 +324,7 @@ a:hover{
     z-index: 2;
 }
 .descriptionBox:nth-child(even){
-    animation: 1s spawnBox forwards;
+    animation: 2s spawnBox forwards;
 }
 .descriptionBox:hover{
     box-shadow: 1px 1px 5px #708090;
@@ -518,11 +518,14 @@ section:last-of-type{
         height: 5px;
         width: 5px;
     }
-    60%{
+    37%{
+        width: 5px;
+    }
+    40%{
         height: 400px;
     }
-    70%{
-        width: 5px;
+    60%{
+        width: 250px;
     }
     100%{
         width: 250px;
@@ -537,7 +540,6 @@ section:last-of-type{
     }
     35%{
         left: 50%;
-        translate: translateX(-125px);
     }
     40%{
         height: 400px;
