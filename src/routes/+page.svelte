@@ -27,6 +27,15 @@ function writeText(el, text, written, index, delay){
     }, delay);
 }
 
+function togglePhoneNav(){
+    showPhoneNav = !showPhoneNav;
+    if (showPhoneNav){
+        phoneNavEl.style.display = 'block';
+    }else{
+        phoneNavEl.style.display = 'none';
+    }
+}
+
 /* ===== Variables ===== */
 let clickerSectionEl;
 let clickerLinkEl;
@@ -38,14 +47,32 @@ let abtTextEl;
 let infTextEl;
 let proTextEl;
 
-onMount(()=>{
-    writeText(abtTextEl, abtTextEl.innerText, '', 0, 1500);
-    writeText(infTextEl, infTextEl.innerText, '', 0, 1650);
-    writeText(proTextEl, proTextEl.innerText, '', 0, 1800);
-    abtTextEl.innerText = '';
-    infTextEl.innerText = '';
-    proTextEl.innerText = '';
+let writeTextOffset = 150;
+let writeTextDelay = 1500;
+let writeTextDelay2 = 500;
 
+let phoneNavEl;
+let showPhoneNav = false;
+
+onMount(()=>{
+    let isWriting = false;
+    if(window.innerWidth > 1200){
+        writeText(abtTextEl, abtTextEl.innerText, '', 0, writeTextDelay);
+        writeText(infTextEl, infTextEl.innerText, '', 0, writeTextDelay+writeTextOffset);
+        writeText(proTextEl, proTextEl.innerText, '', 0, writeTextDelay+2*writeTextOffset);
+        isWriting = true;
+    }else if (window.innerWidth < 600){
+        writeText(abtTextEl, abtTextEl.innerText, '', 0, writeTextDelay2);
+        writeText(infTextEl, infTextEl.innerText, '', 0, writeTextDelay2);
+        writeText(proTextEl, proTextEl.innerText, '', 0, writeTextDelay2);
+        isWriting = true;
+    }
+    if (isWriting){
+        abtTextEl.innerText = '';
+        infTextEl.innerText = '';
+        proTextEl.innerText = '';
+    }
+    
     let sections = [
         clickerSectionEl,
         todoSectionEl,
@@ -63,19 +90,19 @@ onMount(()=>{
         // Smoothly scroll to nearest page height (100vh) 100ms after
         //  user stopped scrolling
         setTimeout(() => {
-            if (scrolled == window.pageYOffset) {
+            if (scrolled == window.pageYOffset && window.innerWidth>1200) {
                 if ( scrolled % window.innerHeight >= window.innerHeight / 2) {
                     window.scrollBy({
                         left: 0,
                         top: window.innerHeight - (scrolled % window.innerHeight),
                         behavior: 'smooth'
-                    })
+                    });
                 } else {
                     window.scrollBy({
                         left: 0,
                         top: -(scrolled%window.innerHeight),
                         behavior: 'smooth'
-                    })
+                    });
                 }
             }
         }, 100);
@@ -93,7 +120,7 @@ onMount(()=>{
             }
         }
     });
-
+    
     // Remove the url to end with /#[element] when reloading page
     //  because it looks better
     if (window.performance.getEntriesByType('navigation').map((nav) => nav.type).includes('reload')){
@@ -109,6 +136,22 @@ onMount(()=>{
 
 <body>
     <!-- ===== Navigation Bar ===== -->
+    <button class="navButton open" on:click={()=>{togglePhoneNav()}}>
+        <hr class="bar"><hr class="bar"><hr class="bar">
+    </button>
+    <div class='navSidebar' bind:this={phoneNavEl}>
+        <div>
+            <button class="navButton close" on:click={()=>{togglePhoneNav()}}>
+                <hr class="bar"><hr class="bar"><hr class="bar">
+            </button>
+            <a href="#home" class="navTitle" on:click={togglePhoneNav}>Home</a>
+        </div>
+        <hr class="navBreak">
+        <a href="#clicker" on:click={togglePhoneNav}>Clicker of Cookies</a>
+        <a href="#todo" on:click={togglePhoneNav}>ToDo List</a>
+        <a href="#other" on:click={togglePhoneNav}>Other Projects</a>
+        <hr class="navBreak">
+    </div>
     <nav>
         <a class="navTitle" href="#home">Home</a>
         <a href="#clicker" bind:this={clickerLinkEl}>Cookie Clicker</a>
@@ -151,6 +194,8 @@ onMount(()=>{
                     calculator that can be found on my GitHub.
                     <br><br>
                     The projects on this page are made in an attempt to learn more about web design and HTML.
+                    <br><br>
+                    These projects do not work on phones (yet)
                 </p>
                 <article class="descriptionFooter">✎</article>
             </div>
@@ -165,8 +210,11 @@ onMount(()=>{
             <p class="sectionDescription">
                 A simple cookie clicker clone and the <br/> 
                 first big project I made in Svelte. <br/>
-                Click <a class="linkText" href="/clicker">here</a> to play it.
+                <span class="playtestLink">Click <a class="linkText" href="/clicker">here</a> to play it.</span>
             </p>
+            <span class="mobileWarning">*This project does not work as intended on mobile
+                devices, please visit on a pc or laptop to try it.
+            </span>
         </div>
         <img class="screenshot" alt="Clicker of Cookies screenshot" src="/screenie1.png"/>
         <a class="projectsText upper" href="#home">˄ Home ˄</a>
@@ -177,11 +225,14 @@ onMount(()=>{
         <div id="todoSidebar" class="sidebar">
             <h1>ToDo list</h1>
             <p class="sectionDescription">
-                A (mostly) working ToDo list <br/>
-                where you can add and remove tasks <br/>
-                as you can with most ToDo lists. <br/>
-                You can click <a class="linkText" href="/todo">here</a> to try it.
+                A (mostly) working ToDo list
+                where you can add and remove tasks
+                as you can with most ToDo lists. 
+                <span class="playtestLink">You can click <a class="linkText" href="/todo">here</a> to try it.</span>
             </p>
+            <span class="mobileWarning">*This project does not work as intended on mobile
+                devices, please visit on a pc or laptop to try it.
+            </span>
         </div>
         <img class="screenshot" alt="Screenshot of the ToDo list" src="/screenie2.png"/>
         <a class="projectsText upper" href="#clicker">˄ Clicker ˄</a>
@@ -192,19 +243,19 @@ onMount(()=>{
         <div id="otherSidebar" class="sidebar">
             <h1>Other projects</h1>
             <p class="sectionDescription">
-                My other projects, both old and <br/> 
+                My other projects, both old and 
                 new, projects can be found 
                 <a class="linkText" target="_blank" rel="noopener noreferrer" href="https://github.com/NemoEriksson02?tab=repositories">
                     here
-                </a> <br/>
+                </a> 
                 on my GitHub. <br/><br><br>
-                The calculator app can be found <br>
-                on my github. It is made in node<br>
-                with express-js. To try it, just <br>
-                download the files and type <br> 
-                <i>"node server.js"</i> to start it. <br>
-                You dont need to download the files <br>
-                to join it from another device once <br>
+                The calculator app can be found
+                on my github. It is made in node
+                with express-js. To try it, just
+                download the files and type
+                <i>"node server.js"</i> to start it.
+                You dont need to download the files
+                to join it from another device once
                 the server is running.
             </p>
         </div>
@@ -243,7 +294,6 @@ body{
 :global(body){
     padding: 0;
     margin: 0;
-    min-width: 1360px;
 }
 
 nav{
@@ -401,6 +451,10 @@ a:hover{
     font-size: 15px;
 }
 
+.mobileWarning{
+    display: none;
+}
+
 section{
     position: relative;
     height: 100vh;
@@ -441,6 +495,9 @@ section:last-of-type{
     top: 120px;
     left: 25px;
     font-size: 15px;
+    overflow-wrap: normal;
+    display: block;
+    max-width: calc(100% - 40px);
 }
 
 .screenshot{
@@ -595,6 +652,215 @@ section:last-of-type{
 @keyframes show{
     from{ opacity: 0; }
     to{ opacity: 1; }
+}
+
+/* ===== Hide by Default ===== */
+.navSidebar, .navButton{
+    display: none;
+}
+
+/* ===== RESPONSIVE: Phones =====*/
+
+@media only screen and (max-width: 599px){
+    .projectsText,
+    nav{
+        display: none;
+    }
+
+    *{
+        -webkit-tap-highlight-color: transparent;
+        scroll-behavior: smooth;
+    }
+
+    body{
+        height: fit-content;
+    }
+
+    .navSidebar{
+        display: none;
+        width: 65%;
+        height: fit-content;
+        background: #1E2022;
+        position: fixed;
+        left: 0;
+        top: 0;
+        border-bottom-right-radius: 12px;
+        border-bottom: 3px solid #e0e0e0;
+        border-right: 3px solid #e0e0e0;
+        z-index: 100;
+        opacity: 1;
+    }
+
+    .navSidebar a{
+        display: block;
+        font-size: 1.6rem;
+        color: #e0e0e0;
+        text-decoration: none;
+        margin: 20px 0 20px 10%;
+    }
+
+    .navSidebar .navTitle{
+        border: 0;
+        text-align: center;
+        font-size: 2rem;
+        margin: auto 0;
+        width: 60%;
+        position: relative;
+    }
+
+    .navBreak{
+        height: 3px;
+        border: none;
+        background: #e0e0e0;
+        width: 80%;
+    }
+    .navBreak:last-of-type{
+        margin-bottom: 30px;
+    }
+
+    .navSidebar > div{
+        height: fit-content;
+        width: 100%;
+        display: flex;
+    }
+    
+    .navButton{
+        background: #1E2022;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 8vh;
+        aspect-ratio: 1;
+        border: none;
+        z-index: 10;
+    }
+    
+    .navButton .bar{
+        width: 70%;
+        height: 10%;
+        margin: 0 auto;
+        background: #e0e0e0;
+        border-radius: 5px;
+        border: 0;
+        border: 1px solid #e0e0e0;
+    }
+    .navButton.open{
+        background: transparent;
+        position: fixed;
+    }
+    .navButton.open .bar{
+        background: #1E2022;
+    }
+
+    #home{
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        justify-content: space-evenly;
+        position: initial;
+        transform: translate(0,0);
+    }
+
+    .descriptionBox{
+        display: block;
+        position: inherit;
+        height: 440px;
+        z-index: 0;
+        margin: 30% 0;
+        padding: 0;
+        transform: translate(-50%, 0);
+        animation: none !important;
+        z-index: 0 !important;
+    }
+    .descriptionBox:first-of-type{
+        margin-top: 15%;
+    }
+
+    .descriptionBox article{
+        animation-delay: .2s;
+    }
+
+    .centerTitle{
+        animation: none;
+        z-index: 1;
+        opacity: 1;
+        height: fit-content;
+        top: 10px;
+    }
+
+    section{
+        width: 100%;
+        height: fit-content;
+    }
+    section .sidebar{
+        width: 100%;
+        border-right: none !important;
+        border-top: 4px solid #1E2022;
+    }
+
+    .sidebar h1{
+        width: fit-content;
+        top: 4%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #e0e0e0 !important;
+        text-shadow: 1px 1px 2px #1e2022;
+        font-size: 2.4rem;
+        font-weight: 600;
+    }
+
+    .sectionDescription{
+        width: fit-content;
+        top: 8%;
+        left: 30px;
+        color: #e0e0e0 !important;
+        display: initial;
+        text-shadow: 1px 1px 2px #1e2022;
+        font-size: 1.4rem;
+        font-weight: 500;
+        overflow-wrap: normal;
+        display: block;
+        max-width: calc(100% - 40px);
+        z-index: 1;
+        background-color: inherit;
+    }
+    .linkText{
+        color: #e0e0e0 !important;
+        border-color: #e0e0e0 !important;
+    }
+    .playtestLink{
+        display: none;
+    }
+    .mobileWarning{
+        display: initial;
+        font-size: 1rem;
+        font-style: italic;
+        display: block;
+        text-shadow: 0 0 2px #1e2022;
+        position: absolute;
+        bottom: 30px;
+        color: #e0e0e0;
+        text-align: center;
+    }
+
+    .screenshot{
+        max-width: 80%;
+        height: fit-content;
+        aspect-ratio: calc(16 / 9);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0) rotate(-2.5deg);
+        border: 4px solid #e0e0e0;
+        z-index: 0;
+    }
+    #other .screenshot{
+        background: url('/static/screenie4.png');
+        top: 70%;
+    }
+    #other .screenshot.alt{
+        display: none;
+    }
 }
 
 </style>
