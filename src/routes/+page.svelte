@@ -669,6 +669,7 @@ section:last-of-type{
     *{
         -webkit-tap-highlight-color: transparent;
         scroll-behavior: smooth;
+        font-family: 'Oswald';
     }
 
     body{
@@ -763,7 +764,7 @@ section:last-of-type{
             linear-gradient(63deg, #e0e0e0 23%, transparent 23%) 7px 0,
             linear-gradient(63deg, transparent 74%, #e0e0e0 78%),
             linear-gradient(63deg, transparent 34%, #e0e0e0 38%, #e0e0e0 58%, transparent 62%),
-            #c7c7c9aa;
+            rgba(224, 224, 224, 97%);
         background-size: 16px 48px;
     }
 
