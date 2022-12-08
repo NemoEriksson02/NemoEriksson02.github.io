@@ -141,10 +141,10 @@ onMount(()=>{
     </button>
     <div class='navSidebar' bind:this={phoneNavEl}>
         <div>
+            <a href="#home" class="navTitle" on:click={togglePhoneNav}>Home</a>
             <button class="navButton close" on:click={()=>{togglePhoneNav()}}>
                 <hr class="bar"><hr class="bar"><hr class="bar">
             </button>
-            <a href="#home" class="navTitle" on:click={togglePhoneNav}>Home</a>
         </div>
         <hr class="navBreak">
         <a href="#clicker" on:click={togglePhoneNav}>Clicker of Cookies</a>
@@ -662,8 +662,7 @@ section:last-of-type{
 /* ===== RESPONSIVE: Phones =====*/
 
 @media only screen and (max-width: 599px){
-    .projectsText,
-    nav{
+    .projectsText, nav{
         display: none;
     }
 
@@ -679,14 +678,12 @@ section:last-of-type{
     .navSidebar{
         display: none;
         width: 65%;
-        height: fit-content;
+        height: 100%;
         background: #1E2022;
         position: fixed;
-        left: 0;
+        right: 0;
         top: 0;
-        border-bottom-right-radius: 12px;
-        border-bottom: 3px solid #e0e0e0;
-        border-right: 3px solid #e0e0e0;
+        border-left: 4px solid #e0e0e0;
         z-index: 100;
         opacity: 1;
     }
@@ -709,10 +706,11 @@ section:last-of-type{
     }
 
     .navBreak{
-        height: 3px;
+        height: 1px;
         border: none;
         background: #e0e0e0;
-        width: 80%;
+        width: 85%;
+        margin: 20px auto;
     }
     .navBreak:last-of-type{
         margin-bottom: 30px;
@@ -722,6 +720,7 @@ section:last-of-type{
         height: fit-content;
         width: 100%;
         display: flex;
+        justify-content: right;
     }
     
     .navButton{
@@ -742,11 +741,12 @@ section:last-of-type{
         background: #e0e0e0;
         border-radius: 5px;
         border: 0;
-        border: 1px solid #e0e0e0;
+        box-shadow: 0 0 1px #e0e0e0;
     }
     .navButton.open{
         background: transparent;
         position: fixed;
+        right: 0;
     }
     .navButton.open .bar{
         background: #1E2022;
@@ -759,25 +759,31 @@ section:last-of-type{
         justify-content: space-evenly;
         position: initial;
         transform: translate(0,0);
+        background:
+            linear-gradient(63deg, #e0e0e0 23%, transparent 23%) 7px 0,
+            linear-gradient(63deg, transparent 74%, #e0e0e0 78%),
+            linear-gradient(63deg, transparent 34%, #e0e0e0 38%, #e0e0e0 58%, transparent 62%),
+            #c7c7c9aa;
+        background-size: 16px 48px;
     }
 
     .descriptionBox{
         display: block;
-        position: inherit;
-        height: 440px;
+        position: initial;
+        height: 420px;
+        width: calc(100% - 8vh - 20px);
         z-index: 0;
-        margin: 30% 0;
+        margin: 20px 0 30px 20px;
         padding: 0;
-        transform: translate(-50%, 0);
+        transform: translate(0, 0);
         animation: none !important;
         z-index: 0 !important;
-    }
-    .descriptionBox:first-of-type{
-        margin-top: 15%;
+        border-radius: 5px;
+        box-shadow: 1px 1px 5px #708090;
     }
 
     .descriptionBox article{
-        animation-delay: .2s;
+        display: none;
     }
 
     .centerTitle{
@@ -786,6 +792,8 @@ section:last-of-type{
         opacity: 1;
         height: fit-content;
         top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     section{
