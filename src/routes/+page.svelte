@@ -63,8 +63,8 @@ onMount(()=>{
         isWriting = true;
     }else if (window.innerWidth < 600){
         writeText(abtTextEl, abtTextEl.innerText, '', 0, writeTextDelay2);
-        writeText(infTextEl, infTextEl.innerText, '', 0, writeTextDelay2);
-        writeText(proTextEl, proTextEl.innerText, '', 0, writeTextDelay2);
+        writeText(infTextEl, infTextEl.innerText, '', 0, writeTextDelay2+writeTextOffset);
+        writeText(proTextEl, proTextEl.innerText, '', 0, writeTextDelay2+2*writeTextOffset);
         isWriting = true;
     }
     if (isWriting){
@@ -136,20 +136,16 @@ onMount(()=>{
 
 <body>
     <!-- ===== Navigation Bar ===== -->
-    <button class="navButton open" on:click={()=>{togglePhoneNav()}}>
+    <button class="navButton open mobileOnly" on:click={()=>{togglePhoneNav()}}>
         <hr class="bar"><hr class="bar"><hr class="bar">
     </button>
-    <div class='navSidebar' bind:this={phoneNavEl}>
-        <div>
-            <a href="#home" class="navTitle" on:click={togglePhoneNav}>Home</a>
-            <button class="navButton close" on:click={()=>{togglePhoneNav()}}>
-                <hr class="bar"><hr class="bar"><hr class="bar">
-            </button>
-        </div>
+    <div class='navSidebar mobileOnly' bind:this={phoneNavEl}>
+        <button class="navButton close" on:click={()=>{togglePhoneNav()}}>
+            <hr class="bar"><hr class="bar"><hr class="bar">
+        </button>
         <hr class="navBreak">
-        <a href="#clicker" on:click={togglePhoneNav}>Clicker of Cookies</a>
-        <a href="#todo" on:click={togglePhoneNav}>ToDo List</a>
-        <a href="#other" on:click={togglePhoneNav}>Other Projects</a>
+        <a href="#home" on:click={togglePhoneNav}>Home</a>
+        <a href="#clicker" on:click={togglePhoneNav}>Projects</a>
         <hr class="navBreak">
     </div>
     <nav>
@@ -236,6 +232,9 @@ onMount(()=>{
     <section id="other" bind:this={otherSectionEl}>
         <div id="otherSidebar" class="sidebar">
             <h1>Other projects</h1>
+            <a class="mobileOnly linkCover" 
+                target="_blank" rel="noopener noreferrer" 
+                href="https://github.com/NemoEriksson02?tab=repositories">_</a>
             <p class="sectionDescription">
                 My other projects, both old and 
                 new, projects can be found 
@@ -257,14 +256,14 @@ onMount(()=>{
         <img class="screenshot alt" alt="Multiplayer calculator screenshot" src="/screenie4.png">
         <a class="projectsText upper" href="#todo">˄ ToDo list ˄</a>
     </section>
+
     <footer class="mobileWarning">
         <hr class="footerBreak">
         <span>*These projects does not work as intended on mobile
-            devices, please visit this website on a pc or laptop to try it.
+            devices yet, please visit this website on a pc or laptop to try it.
         </span>
     </footer>
 </body>
-
 
 <style>
 *{
@@ -315,7 +314,9 @@ nav .navTitle, a{
 h1::selection, 
 p::selection, 
 a::selection,
-br::selection{
+br::selection,
+i::selection,
+span::selection{
     background: #708090;
     color: #e0e0e0;
 }
@@ -353,7 +354,7 @@ a:hover{
     height: 400px;
     width: 250px;
     background: #bbbfc2;
-    border-radius: 20px;
+    border-radius: 6px;
     position: absolute;
     top: 55%;
     left: 50%;
@@ -655,7 +656,7 @@ section:last-of-type{
 }
 
 /* ===== Hide by Default ===== */
-.navSidebar, .navButton, .mobileOnly{
+.mobileOnly{
     display: none;
 }
 
@@ -678,6 +679,10 @@ section:last-of-type{
         background: #e0e0e0;
     }
 
+    .mobileOnly{
+        display: initial;
+    }
+
     .navSidebar{
         display: none;
         width: 65%;
@@ -697,15 +702,8 @@ section:last-of-type{
         color: #e0e0e0;
         text-decoration: none;
         margin: 20px 0 20px 10%;
-    }
-
-    .navSidebar .navTitle{
-        border: 0;
-        text-align: center;
-        font-size: 1.2rem;
-        margin: 15px 0 5px;
-        width: 60%;
-        position: relative;
+        font-weight: 400;
+        letter-spacing: 2px;
     }
 
     .navBreak{
@@ -715,15 +713,9 @@ section:last-of-type{
         width: 85%;
         margin: 5px auto 10px;
     }
+
     .navBreak:last-of-type{
         margin-bottom: 30px;
-    }
-
-    .navSidebar > div{
-        height: fit-content;
-        width: 100%;
-        display: flex;
-        justify-content: right;
     }
     
     .navButton{
@@ -735,6 +727,8 @@ section:last-of-type{
         aspect-ratio: 1;
         border: none;
         z-index: 10;
+        float: right;
+        margin-bottom: 9px;
     }
     
     .navButton .bar{
@@ -768,17 +762,21 @@ section:last-of-type{
     .descriptionBox{
         display: block;
         position: initial;
-        height: 300px;
-        width: calc(100% - 8vh - 30px);
+        height: 256px;
+        width: 100%;
         z-index: 0;
-        margin: 20px auto 30px auto;
-        padding: 0;
+        margin: 0 auto 0 auto;
         transform: translate(0, 0);
         animation: none !important;
         z-index: 0 !important;
-        border-radius: 5px;
-        border: 1px solid #bbbfc2;
-        background: #d0d0d0;
+        border-radius: 0;
+        background: #d9d9d9;
+    }
+    .descriptionBox:first-of-type{
+        padding-top: 6vh;
+    }
+    .descriptionBox:last-of-type{
+        margin-bottom: 3vh;
     }
     .descriptionBox:hover{
         box-shadow: none;
@@ -787,8 +785,13 @@ section:last-of-type{
     .descriptionBox article{
         display: none;
     }
+
     .descriptionBox p{
-        font-size: 1rem;
+        font-size: .8rem;
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        font-weight: 300;
     }
 
     .centerTitle{
@@ -799,7 +802,9 @@ section:last-of-type{
         top: 10px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 1.4rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        font-variant: normal;
     }
 
     section{
@@ -811,6 +816,7 @@ section:last-of-type{
         transform: translateX(-50%);
         margin: 40px 0 40px 0;
     }
+
     section .sidebar{
         width: calc(100% + 40px);
         position: relative;
@@ -819,15 +825,16 @@ section:last-of-type{
         height: 120px;
         border: none !important;
         border-radius: 4px;
-        background: url('https://cdn.openai.com/API/images/gradient_card_1.webp') !important;
     }
 
+    #cookieSidebar{
+        background: #a27b5c;
+    }
     #todoSidebar{
-        background-image: url('https://cdn.openai.com/API/images/gradient_card_2.webp') !important;
-        background-position-x: -20px !important;
+        background: #708090;   
     }
     #otherSidebar{
-        background: #1E2022 !important;
+        background: #1E2022;
     }
 
     .sidebar h1{
@@ -843,9 +850,17 @@ section:last-of-type{
         display: none;
     }
 
-    .linkText{
-        color: #e0e0e0 !important;
-        border-color: #e0e0e0 !important;
+    .linkCover{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        content-visibility: hidden;
+        text-decoration: none;
+    }
+    .linkCover:active{
+        text-decoration: none;
     }
 
     .playtestLink{
@@ -863,8 +878,8 @@ section:last-of-type{
         width: 80%;
         display: block;
         margin: 0 auto;
-        font-size: .5rem;
-        padding-bottom: 2%;
+        font-size: .65rem;
+        padding-bottom: 1%;
     }
 
     .footerBreak{
@@ -875,10 +890,7 @@ section:last-of-type{
         background: black;
         border: none;
         outline: none;
-    }
-
-    .mobileOnly{
-        display: initial;
+        opacity: .25;
     }
 }
 
