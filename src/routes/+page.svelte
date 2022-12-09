@@ -206,15 +206,12 @@ onMount(()=>{
     <!-- ===== Project sections ===== -->
     <section id="clicker" bind:this={clickerSectionEl}>
         <div id="cookieSidebar" class="sidebar">
-            <h1>Clicker of Cookies</h1>
+            <h1>Clicker of Cookies<span class="mobileOnly">*</span></h1>
             <p class="sectionDescription">
                 A simple cookie clicker clone and the <br/> 
                 first big project I made in Svelte. <br/>
                 <span class="playtestLink">Click <a class="linkText" href="/clicker">here</a> to play it.</span>
             </p>
-            <span class="mobileWarning">*This project does not work as intended on mobile
-                devices, please visit on a pc or laptop to try it.
-            </span>
         </div>
         <img class="screenshot" alt="Clicker of Cookies screenshot" src="/screenie1.png"/>
         <a class="projectsText upper" href="#home">˄ Home ˄</a>
@@ -223,16 +220,13 @@ onMount(()=>{
 
     <section id="todo" bind:this={todoSectionEl}>
         <div id="todoSidebar" class="sidebar">
-            <h1>ToDo list</h1>
+            <h1>ToDo list<span class="mobileOnly">*</span></h1>
             <p class="sectionDescription">
                 A (mostly) working ToDo list
                 where you can add and remove tasks
                 as you can with most ToDo lists. 
                 <span class="playtestLink">You can click <a class="linkText" href="/todo">here</a> to try it.</span>
             </p>
-            <span class="mobileWarning">*This project does not work as intended on mobile
-                devices, please visit on a pc or laptop to try it.
-            </span>
         </div>
         <img class="screenshot" alt="Screenshot of the ToDo list" src="/screenie2.png"/>
         <a class="projectsText upper" href="#clicker">˄ Clicker ˄</a>
@@ -263,6 +257,12 @@ onMount(()=>{
         <img class="screenshot alt" alt="Multiplayer calculator screenshot" src="/screenie4.png">
         <a class="projectsText upper" href="#todo">˄ ToDo list ˄</a>
     </section>
+    <footer class="mobileWarning">
+        <hr class="footerBreak">
+        <span>*These projects does not work as intended on mobile
+            devices, please visit this website on a pc or laptop to try it.
+        </span>
+    </footer>
 </body>
 
 
@@ -655,25 +655,27 @@ section:last-of-type{
 }
 
 /* ===== Hide by Default ===== */
-.navSidebar, .navButton{
+.navSidebar, .navButton, .mobileOnly{
     display: none;
 }
 
 /* ===== RESPONSIVE: Phones =====*/
 
 @media only screen and (max-width: 599px){
-    .projectsText, nav{
+    .projectsText, nav, .screenshot{
         display: none;
     }
 
     *{
         -webkit-tap-highlight-color: transparent;
         scroll-behavior: smooth;
-        font-family: 'Oswald';
+        font-family: colfax-web, sans-serif;
+        font-weight: 100;
     }
 
     body{
         height: fit-content;
+        background: #e0e0e0;
     }
 
     .navSidebar{
@@ -691,7 +693,7 @@ section:last-of-type{
 
     .navSidebar a{
         display: block;
-        font-size: 1.6rem;
+        font-size: 1rem;
         color: #e0e0e0;
         text-decoration: none;
         margin: 20px 0 20px 10%;
@@ -700,8 +702,8 @@ section:last-of-type{
     .navSidebar .navTitle{
         border: 0;
         text-align: center;
-        font-size: 2rem;
-        margin: auto 0;
+        font-size: 1.2rem;
+        margin: 15px 0 5px;
         width: 60%;
         position: relative;
     }
@@ -711,7 +713,7 @@ section:last-of-type{
         border: none;
         background: #e0e0e0;
         width: 85%;
-        margin: 20px auto;
+        margin: 5px auto 10px;
     }
     .navBreak:last-of-type{
         margin-bottom: 30px;
@@ -729,20 +731,19 @@ section:last-of-type{
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        height: 8vh;
+        height: 6vh;
         aspect-ratio: 1;
         border: none;
         z-index: 10;
     }
     
     .navButton .bar{
-        width: 70%;
-        height: 10%;
+        width: 60%;
+        height: 5%;
         margin: 0 auto;
         background: #e0e0e0;
         border-radius: 5px;
         border: 0;
-        box-shadow: 0 0 1px #e0e0e0;
     }
     .navButton.open{
         background: transparent;
@@ -760,31 +761,34 @@ section:last-of-type{
         justify-content: space-evenly;
         position: initial;
         transform: translate(0,0);
-        background:
-            linear-gradient(63deg, #e0e0e0 23%, transparent 23%) 7px 0,
-            linear-gradient(63deg, transparent 74%, #e0e0e0 78%),
-            linear-gradient(63deg, transparent 34%, #e0e0e0 38%, #e0e0e0 58%, transparent 62%),
-            rgba(224, 224, 224, 97%);
+        background: #e0e0e0;
         background-size: 16px 48px;
     }
 
     .descriptionBox{
         display: block;
         position: initial;
-        height: 420px;
-        width: calc(100% - 8vh - 20px);
+        height: 300px;
+        width: calc(100% - 8vh - 30px);
         z-index: 0;
-        margin: 20px 0 30px 20px;
+        margin: 20px auto 30px auto;
         padding: 0;
         transform: translate(0, 0);
         animation: none !important;
         z-index: 0 !important;
         border-radius: 5px;
-        box-shadow: 1px 1px 5px #708090;
+        border: 1px solid #bbbfc2;
+        background: #d0d0d0;
+    }
+    .descriptionBox:hover{
+        box-shadow: none;
     }
 
     .descriptionBox article{
         display: none;
+    }
+    .descriptionBox p{
+        font-size: 1rem;
     }
 
     .centerTitle{
@@ -795,80 +799,86 @@ section:last-of-type{
         top: 10px;
         left: 50%;
         transform: translateX(-50%);
+        font-size: 1.4rem;
     }
 
     section{
-        width: 100%;
-        height: fit-content;
+        width: calc(100% - 8vh - 70px);
+        min-height: 120px;
+        height: 120px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 40px 0 40px 0;
     }
     section .sidebar{
-        width: 100%;
-        border-right: none !important;
-        border-top: 4px solid #1E2022;
+        width: calc(100% + 40px);
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 120px;
+        border: none !important;
+        border-radius: 4px;
+        background: url('https://cdn.openai.com/API/images/gradient_card_1.webp') !important;
+    }
+
+    #todoSidebar{
+        background-image: url('https://cdn.openai.com/API/images/gradient_card_2.webp') !important;
+        background-position-x: -20px !important;
+    }
+    #otherSidebar{
+        background: #1E2022 !important;
     }
 
     .sidebar h1{
         width: fit-content;
-        top: 4%;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #e0e0e0 !important;
-        text-shadow: 1px 1px 2px #1e2022;
-        font-size: 2.4rem;
+        font-size: 1rem;
         font-weight: 600;
+        position: initial;
+        transform: translate(15px, 80px);
+        color: #e0e0e0;
     }
 
     .sectionDescription{
-        width: fit-content;
-        top: 8%;
-        left: 30px;
-        color: #e0e0e0 !important;
-        display: initial;
-        text-shadow: 1px 1px 2px #1e2022;
-        font-size: 1.4rem;
-        font-weight: 500;
-        overflow-wrap: normal;
-        display: block;
-        max-width: calc(100% - 40px);
-        z-index: 1;
-        background-color: inherit;
+        display: none;
     }
+
     .linkText{
         color: #e0e0e0 !important;
         border-color: #e0e0e0 !important;
     }
+
     .playtestLink{
         display: none;
     }
+
     .mobileWarning{
-        display: initial;
-        font-size: 1rem;
-        font-style: italic;
+        font-size: .8rem;
         display: block;
-        text-shadow: 0 0 2px #1e2022;
-        position: absolute;
-        bottom: 30px;
-        color: #e0e0e0;
-        text-align: center;
+        margin: 0 auto;
+        width: 100%;
     }
 
-    .screenshot{
-        max-width: 80%;
-        height: fit-content;
-        aspect-ratio: calc(16 / 9);
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, 0) rotate(-2.5deg);
-        border: 4px solid #e0e0e0;
-        z-index: 0;
+    .mobileWarning span{
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+        font-size: .5rem;
+        padding-bottom: 2%;
     }
-    #other .screenshot{
-        background: url('/static/screenie4.png');
-        top: 70%;
+
+    .footerBreak{
+        height: 1px;
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        background: black;
+        border: none;
+        outline: none;
     }
-    #other .screenshot.alt{
-        display: none;
+
+    .mobileOnly{
+        display: initial;
     }
 }
 
