@@ -87,6 +87,10 @@ onMount(()=>{
 
 </script>
   
+<head>
+  <title>Memory</title>
+</head>
+
 <body>
   <a href="/#projects">Go Back</a>
   <main>

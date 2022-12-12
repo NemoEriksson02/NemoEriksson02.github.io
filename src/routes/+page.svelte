@@ -77,7 +77,7 @@ onMount(()=>{
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
-    <title>My Projects</title>
+    <title>Nemo Eriksson | Portfolio</title>
 </head>
 
 <body>
