@@ -88,7 +88,7 @@ onMount(()=>{
 </script>
   
 <body>
-  <a href="/">Go Back</a>
+  <a href="/#projects">Go Back</a>
   <main>
     <div class="row">
       {#each cards as card, i}

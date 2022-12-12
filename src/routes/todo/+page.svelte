@@ -49,7 +49,7 @@
 <body>
     <div class="background"></div>
     <div class="backContainer">
-        <a class="goBack" href="/#todo">Go Back</a>
+        <a class="goBack" href="/#projects">Go Back</a>
     </div>
 <main>
     <header>

@@ -37,12 +37,6 @@ function togglePhoneNav(){
 }
 
 /* ===== Variables ===== */
-let clickerSectionEl;
-let clickerLinkEl;
-let todoSectionEl;
-let todoLinkEl;
-let otherSectionEl;
-let otherLinkEl;
 let abtTextEl;
 let infTextEl;
 let proTextEl;
@@ -73,54 +67,6 @@ onMount(()=>{
         proTextEl.innerText = '';
     }
     
-    let sections = [
-        clickerSectionEl,
-        todoSectionEl,
-        otherSectionEl
-    ]
-    let sectionLinks = [
-        clickerLinkEl,
-        todoLinkEl,
-        otherLinkEl
-    ]
-
-    window.addEventListener('scroll', () => {
-        let scrolled = window.pageYOffset;
-    
-        // Smoothly scroll to nearest page height (100vh) 100ms after
-        //  user stopped scrolling
-        setTimeout(() => {
-            if (scrolled == window.pageYOffset && window.innerWidth>1200) {
-                if ( scrolled % window.innerHeight >= window.innerHeight / 2) {
-                    window.scrollBy({
-                        left: 0,
-                        top: window.innerHeight - (scrolled % window.innerHeight),
-                        behavior: 'smooth'
-                    });
-                } else {
-                    window.scrollBy({
-                        left: 0,
-                        top: -(scrolled%window.innerHeight),
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        }, 100);
-
-        // Change background of the navigation bar section links
-        //  to highlight current section
-        for(let i = 0; i < sections.length; i++){
-            if (isInViewport(sections[i])){
-                sectionLinks[i].style.background = '#e0e0e0';
-                sectionLinks[i].style.color = '#1E2022';
-            }
-            else{
-                sectionLinks[i].style.background = 'none';
-                sectionLinks[i].style.color = '#e0e0e0';
-            }
-        }
-    });
-    
     // Remove the url to end with /#[element] when reloading page
     //  because it looks better
     if (window.performance.getEntriesByType('navigation').map((nav) => nav.type).includes('reload')){
@@ -149,10 +95,8 @@ onMount(()=>{
         <hr class="navBreak">
     </div>
     <nav>
-        <a class="navTitle" href="#home">Home</a>
-        <a href="#clicker" bind:this={clickerLinkEl}>Cookie Clicker</a>
-        <a href="#todo" bind:this={todoLinkEl}>ToDo List</a>
-        <a href="#other" bind:this={otherLinkEl}>Other Projects</a>
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
         <p class="waterstamp">nemo eriksson</p>
     </nav>
 
@@ -196,66 +140,60 @@ onMount(()=>{
                 <article class="descriptionFooter">✎</article>
             </div>
         </div>
-        <a class="projectsText" href="#clicker">˅ Projects ˅</a>
     </div>
 
     <!-- ===== Project sections ===== -->
-    <section id="clicker" bind:this={clickerSectionEl}>
-        <div id="cookieSidebar" class="sidebar">
-            <h1>Clicker of Cookies<span class="mobileOnly">*</span></h1>
-            <p class="sectionDescription">
-                A simple cookie clicker clone and the <br/> 
-                first big project I made in Svelte. <br/>
-                <span class="playtestLink">Click <a class="linkText" href="/clicker">here</a> to play it.</span>
-            </p>
-        </div>
-        <img class="screenshot" alt="Clicker of Cookies screenshot" src="/screenie1.png"/>
-        <a class="projectsText upper" href="#home">˄ Home ˄</a>
-        <a class="projectsText" href="#todo">˅ ToDo list ˅</a>
-    </section>
+    <section class="projectContainer" id="projects">
+        <section class="project" id="clicker">
+            <div id="cookieSidebar" class="sidebar">
+                <h1>Clicker of Cookies<span class="mobileOnly">*</span></h1>
+                <p class="sectionDescription">
+                    A simple cookie clicker clone and the first big project I made in Svelte.
+                    <span class="playtestLink">Click <a class="linkText" href="/clicker">here</a> to play it.</span>
+                </p>
+            </div>
+        </section>
 
-    <section id="todo" bind:this={todoSectionEl}>
-        <div id="todoSidebar" class="sidebar">
-            <h1>ToDo list<span class="mobileOnly">*</span></h1>
-            <p class="sectionDescription">
-                A (mostly) working ToDo list
-                where you can add and remove tasks
-                as you can with most ToDo lists. 
-                <span class="playtestLink">You can click <a class="linkText" href="/todo">here</a> to try it.</span>
-            </p>
-        </div>
-        <img class="screenshot" alt="Screenshot of the ToDo list" src="/screenie2.png"/>
-        <a class="projectsText upper" href="#clicker">˄ Clicker ˄</a>
-        <a class="projectsText" href="#other">˅ Other Projects ˅</a>
-    </section>
+        <section class="project" id="todo">
+            <div id="todoSidebar" class="sidebar">
+                <h1>ToDo list<span class="mobileOnly">*</span></h1>
+                <p class="sectionDescription">
+                    A (mostly) working ToDo list where you can add and remove tasks as you can with most ToDo lists. 
+                    <span class="playtestLink">You can click <a class="linkText" href="/todo">here</a> to try it.</span>
+                </p>
+            </div>
+        </section>
 
-    <section id="other" bind:this={otherSectionEl}>
-        <div id="otherSidebar" class="sidebar">
-            <h1>Other projects</h1>
-            <a class="mobileOnly linkCover" 
-                target="_blank" rel="noopener noreferrer" 
-                href="https://github.com/NemoEriksson02?tab=repositories">_</a>
-            <p class="sectionDescription">
-                My other projects, both old and 
-                new, projects can be found 
-                <a class="linkText" target="_blank" rel="noopener noreferrer" href="https://github.com/NemoEriksson02?tab=repositories">
-                    here
-                </a> 
-                on my GitHub. <br/><br><br>
-                The calculator app can be found
-                on my github. It is made in node
-                with express-js. To try it, just
-                download the files and type
-                <i>"node server.js"</i> to start it.
-                You dont need to download the files
-                to join it from another device once
-                the server is running.
-            </p>
-        </div>
-        <img class="screenshot" alt="Screenshot of my GitHub profile" src="/screenie3.png">
-        <img class="screenshot alt" alt="Multiplayer calculator screenshot" src="/screenie4.png">
-        <a class="projectsText upper" href="#todo">˄ ToDo list ˄</a>
-    </section>
+        <section class="project" id="memory">
+            <div id="memorySidebar" class="sidebar">
+                <h1>Memory<span class="mobileOnly">*</span></h1>
+                <p class="sectionDescription">
+                    A very simple memory game. It is what it is and nothing more. It works just like normal memory.
+                    <span class="playtestLink">Click <a class="linkText" href="/memory">here</a> to play it.</span>
+                </p>
+            </div>
+        </section>
+
+        <section class="project" id="other">
+            <div id="otherSidebar" class="sidebar">
+                <h1>Other projects</h1>
+                <a class="mobileOnly linkCover" 
+                    target="_blank" rel="noopener noreferrer" 
+                    href="https://github.com/NemoEriksson02?tab=repositories">_</a>
+                <p class="sectionDescription">
+                    My other projects, both old and 
+                    new, projects can be found 
+                    <a class="linkText" target="_blank" rel="noopener noreferrer" href="https://github.com/NemoEriksson02?tab=repositories">
+                        here
+                    </a>  
+                    on my GitHub. <br/><br><br>
+                    The calculator app can be found on my github. It is made in node with express-js. To try it, just
+                    download the files and type <i>"node server.js"</i> to start it.
+                    You dont need to download the files to join it from another device once the server is running.
+                </p>
+            </div>
+        </section>
+    </section>  
 
     <footer class="mobileWarning">
         <hr class="footerBreak">
@@ -288,8 +226,9 @@ body{
     max-width: 100%;
     margin: 0;
     padding: 0;
-    background: white;
+    background: whitesmoke;
 }
+
 :global(body){
     padding: 0;
     margin: 0;
@@ -306,7 +245,7 @@ nav{
     border-bottom: 3px solid #e0e0e0;
 }
 
-nav .navTitle, a{
+a{
     display: inline-block;
     font-variant: small-caps;
 }
@@ -324,9 +263,9 @@ span::selection{
 nav a{
     color: #e0e0e0;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 22px;
     margin-left: 45px;
-    padding: 0 10px 0 10px;
+    margin-top: 5px;
     border-radius: 5px;
     user-select: none;
     transition: .2s all;
@@ -334,15 +273,6 @@ nav a{
 
 a:hover{
     cursor: pointer;
-}
-
-.navTitle{
-    padding: 0px 10px 2px 10px;
-    margin-top: 2px;
-    font-size: 22px;
-    margin-left: 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 5px;
 }
 
 .container{
@@ -353,8 +283,8 @@ a:hover{
 .descriptionBox{
     height: 400px;
     width: 250px;
-    background: #bbbfc2;
-    border-radius: 6px;
+    background: #e0e0e0;
+    border-radius: 4px;
     position: absolute;
     top: 55%;
     left: 50%;
@@ -409,41 +339,6 @@ a:hover{
     pointer-events: none;
 }
 
-.projectsText{
-    position: absolute;
-    bottom: -45px;
-    left: 50%;
-    width: 600px;
-    height: 90px;
-    text-align: center;
-    transform: translateX(-50%);
-    font-size: 24px;
-    color: #1E2022;
-    text-decoration: none;
-    letter-spacing: 4px;
-    user-select: none;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    padding: 8px;
-    opacity: .9;
-    transition: .25s all;
-}
-.projectsText:hover{
-    letter-spacing: 8px;
-    opacity: 1;
-    background-color: #c7c7c9;
-}
-
-.projectsText.upper{
-    top: 15px;
-    height: 90px;
-    padding-top: 45px;
-    border-radius: 0;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    font-size: 23px;
-}
-
 .descriptionFooter{
     user-select: none;
     position: absolute;
@@ -456,73 +351,80 @@ a:hover{
     display: none;
 }
 
-section{
-    position: relative;
-    height: 100vh;
+.projectContainer{
+    height: fit-content;
+    width: 100%;
+    background: inherit;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
-section:nth-of-type(1){
+
+.project{
+    width: 60%;
+    height: 300px;
+    margin: 50px 0 50px 100px;
+    border-radius: 4px;
+}
+.project:nth-of-type(1){
     background: #dcd7c9;
 }
-section:nth-of-type(2){
+.project:nth-of-type(2){
     background: #c9d6df;
 }
-section:last-of-type{
+.project:nth-of-type(3){
+    background: #dcd7c9;
+}
+.project:last-of-type{
     background: #21262D;
+}
+.project:nth-child(even){
+    margin: 50px 100px 50px auto;
 }
 
 .linkText{
-    color: white;
+    color: #1E2022;
     font-variant: normal;
     text-decoration: none;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid #1E2022;
 }
 
 .sidebar{
-    height: 100vh;
+    height: 100%;
     background: slategray;
     width: 25%;
     color: #e0e0e0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 .sidebar h1{
     position: relative;
-    top: 90px;
-    left: 22px;
+    top: 20px;
+    left: 28px;
+    font-size: 1.4rem;
     font-variant: small-caps;
+    color: #e0e0e0;
+    display: block;
+    overflow-wrap: normal;
+    width: 80%;
 }
 
 .sectionDescription{
     position: relative;
-    top: 120px;
-    left: 25px;
+    left: calc(100% + 50px);
     font-size: 15px;
     overflow-wrap: normal;
     display: block;
-    max-width: calc(100% - 40px);
-}
-
-.screenshot{
-    height: 300px;
-    width: 540px;
-    z-index: 2;
-    position: absolute;
-    left: 55%;
-    top: 22.5%;
-    transform: rotate(6deg);
-    border-radius: 5px;
-}
-.screenshot.alt{
-    top: 50%;
-    left: 30%;
-    scale: .8;
-    transform: rotateZ(-12deg);
+    height: 200px;
+    width: 500px;
+    color: #1E2022;
 }
 
 .waterstamp{
     display: inline-block;
     position: absolute;
     height: 0;
-    top: 30px;
+    top: 27px;
     right: 20%;
     font-variant: small-caps;
     letter-spacing: 25px;
@@ -539,7 +441,7 @@ section:last-of-type{
 /* ===== ID-selectors ===== */
 
 #home{
-    background: #d0d0d0;
+    background: #EFEFEF;
     height: 100vh;
 }
 
@@ -550,27 +452,20 @@ section:last-of-type{
 
 #todoSidebar{
     background: #52616B;
-    border-right: 4px solid #1E2022;
-    color: #1E2022;
 }
 
-#todoSidebar .linkText{
-    color: #1E2022;
-    border-color: #1E2022;
+#memorySidebar{
+    background: #7d5b3f;
 }
 
 #otherSidebar{
     background: #161B22;
-    border-right: 4px solid #EFF5FB;
 }
 
-#other .projectsText{
+#otherSidebar .sectionDescription,
+#otherSidebar .linkText{
     color: #e0e0e0;
-    font-weight: lighter;
-}
-
-#other .projectsText:hover{
-    color: #1E2022;
+    border-color: #e0e0e0;
 }
 
 /* ===== ANIMATIONS =====*/
@@ -663,7 +558,7 @@ section:last-of-type{
 /* ===== RESPONSIVE: Phones =====*/
 
 @media only screen and (max-width: 599px){
-    .projectsText, nav, .screenshot{
+    nav{
         display: none;
     }
 
@@ -676,7 +571,7 @@ section:last-of-type{
 
     body{
         height: fit-content;
-        background: #e0e0e0;
+        background: white;
     }
 
     .mobileOnly{
@@ -755,7 +650,7 @@ section:last-of-type{
         justify-content: space-evenly;
         position: initial;
         transform: translate(0,0);
-        background: #e0e0e0;
+        background: transparent;
         background-size: 16px 48px;
     }
 
@@ -770,7 +665,7 @@ section:last-of-type{
         animation: none !important;
         z-index: 0 !important;
         border-radius: 0;
-        background: #d9d9d9;
+        background: #EFEFEF;
     }
     .descriptionBox:first-of-type{
         padding-top: 6vh;
@@ -807,7 +702,7 @@ section:last-of-type{
         font-variant: normal;
     }
 
-    section{
+    .project{
         width: calc(100% - 8vh - 70px);
         min-height: 120px;
         height: 120px;
@@ -817,7 +712,11 @@ section:last-of-type{
         margin: 40px 0 40px 0;
     }
 
-    section .sidebar{
+    .project:nth-child(even){
+        margin: 40px 0 40px 0;
+    }
+
+    .project .sidebar{
         width: calc(100% + 40px);
         position: relative;
         left: 50%;

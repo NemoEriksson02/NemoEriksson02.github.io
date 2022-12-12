@@ -206,7 +206,7 @@
 
     <div id="messageDiv"><p class="slideDown" bind:this={messageElement}></p></div>
     <div id="backContainer">
-        <a href="/#clicker" id="backToMain">Go Back</a>
+        <a href="/#projects" id="backToMain">Go Back</a>
     </div> 
 
     <section id="upgradeSection">
