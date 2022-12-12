@@ -762,7 +762,7 @@ section:last-of-type{
     .descriptionBox{
         display: block;
         position: initial;
-        height: 256px;
+        height: 280px;
         width: 100%;
         z-index: 0;
         margin: 0 auto 0 auto;
@@ -858,6 +858,8 @@ section:last-of-type{
         left: 0;
         content-visibility: hidden;
         text-decoration: none;
+        opacity: 0;
+        content: "";
     }
     .linkCover:active{
         text-decoration: none;
