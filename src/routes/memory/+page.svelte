@@ -144,6 +144,7 @@ onMount(()=>{
 <body>
   <div class="background"></div>
   <a href="/#projects">Go Back</a>
+  <h2>Memory</h2>
   <main>
     <div class="row">
       {#each cards as card, i}
@@ -207,6 +208,16 @@ a{
 
 a:hover{
   opacity: 1;
+}
+
+h2{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #e0e0e0;
+  font-size: 40px;
+  width: fit-content;
+  margin: 30px 0 0 0;
 }
 
 main {
@@ -306,6 +317,7 @@ main {
   transform: translate(10px, 2px);
   display: inline-block;
   border-radius: 4px;
+  transition: background .6s;
 }
 
 .hsGrade.good{
@@ -330,7 +342,10 @@ main {
   border-radius: 4px;
   font-weight: 600;
   opacity: .6;
-  transition: .2s all;
+  transition: .4s all;
+}
+.difficultyButton:hover{
+  opacity: 1;
 }
 
 .activeDifficulty{
