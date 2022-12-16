@@ -455,7 +455,7 @@ a:hover{
 }
 
 #memorySidebar{
-    background: #7d5b3f;
+    background: #363660;
 }
 
 #otherSidebar{

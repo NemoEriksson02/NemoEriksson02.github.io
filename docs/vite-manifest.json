@@ -1,6 +1,6 @@
 {
   "node_modules/@sveltejs/kit/src/runtime/client/start.js": {
-    "file": "_app/immutable/start-2a152679.js",
+    "file": "_app/immutable/start-ebf2108e.js",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -34,14 +34,14 @@
     ]
   },
   "src/routes/+page.svelte": {
-    "file": "_app/immutable/components/pages/_page.svelte-baeba0a4.js",
+    "file": "_app/immutable/components/pages/_page.svelte-602298c9.js",
     "src": "src/routes/+page.svelte",
     "isEntry": true,
     "imports": [
       "_index-b44a823f.js"
     ],
     "css": [
-      "_app/immutable/assets/_page-b4230773.css"
+      "_app/immutable/assets/_page-e78ae3a3.css"
     ]
   },
   "src/routes/clicker/+page.svelte": {
@@ -56,14 +56,14 @@
     ]
   },
   "src/routes/memory/+page.svelte": {
-    "file": "_app/immutable/components/pages/memory/_page.svelte-1a3910e3.js",
+    "file": "_app/immutable/components/pages/memory/_page.svelte-8ea28c43.js",
     "src": "src/routes/memory/+page.svelte",
     "isEntry": true,
     "imports": [
       "_index-b44a823f.js"
     ],
     "css": [
-      "_app/immutable/assets/_page-2b2fdaee.css"
+      "_app/immutable/assets/_page-b4b9115e.css"
     ]
   },
   "src/routes/todo/+page.svelte": {
@@ -115,7 +115,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/2.js": {
-    "file": "_app/immutable/chunks/2-b3dbd6c9.js",
+    "file": "_app/immutable/chunks/2-ee9dadf8.js",
     "src": ".svelte-kit/generated/nodes/2.js",
     "isDynamicEntry": true,
     "imports": [
@@ -131,7 +131,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/4.js": {
-    "file": "_app/immutable/chunks/4-75e095c5.js",
+    "file": "_app/immutable/chunks/4-a320e38b.js",
     "src": ".svelte-kit/generated/nodes/4.js",
     "isDynamicEntry": true,
     "imports": [
@@ -146,20 +146,20 @@
       "src/routes/todo/+page.svelte"
     ]
   },
-  "src/routes/+page.css": {
-    "file": "_app/immutable/assets/_page-b4230773.css",
-    "src": "src/routes/+page.css"
-  },
   "src/routes/todo/+page.css": {
     "file": "_app/immutable/assets/_page-6c3302c5.css",
     "src": "src/routes/todo/+page.css"
   },
-  "src/routes/memory/+page.css": {
-    "file": "_app/immutable/assets/_page-2b2fdaee.css",
-    "src": "src/routes/memory/+page.css"
-  },
   "src/routes/clicker/+page.css": {
     "file": "_app/immutable/assets/_page-af3fd41b.css",
     "src": "src/routes/clicker/+page.css"
+  },
+  "src/routes/memory/+page.css": {
+    "file": "_app/immutable/assets/_page-b4b9115e.css",
+    "src": "src/routes/memory/+page.css"
+  },
+  "src/routes/+page.css": {
+    "file": "_app/immutable/assets/_page-e78ae3a3.css",
+    "src": "src/routes/+page.css"
   }
 }
