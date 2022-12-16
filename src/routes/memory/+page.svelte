@@ -92,6 +92,7 @@ function setDifficulty(newDifficulty){
     diffBtns[key].classList.remove('activeDifficulty');
   }
   diffBtns[newDifficulty].classList.add('activeDifficulty');
+  totalFlips = 0;
 }
 
 let cards = genCards();
