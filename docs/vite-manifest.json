@@ -1,6 +1,6 @@
 {
   "node_modules/@sveltejs/kit/src/runtime/client/start.js": {
-    "file": "_app/immutable/start-7b1f5cdf.js",
+    "file": "_app/immutable/start-a2abd332.js",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -68,7 +68,7 @@
     ]
   },
   "src/routes/telltale/+page.svelte": {
-    "file": "_app/immutable/components/pages/telltale/_page.svelte-e1ac0609.js",
+    "file": "_app/immutable/components/pages/telltale/_page.svelte-81425460.js",
     "src": "src/routes/telltale/+page.svelte",
     "isEntry": true,
     "imports": [
@@ -151,7 +151,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/5.js": {
-    "file": "_app/immutable/chunks/5-661f87ef.js",
+    "file": "_app/immutable/chunks/5-80a382bd.js",
     "src": ".svelte-kit/generated/nodes/5.js",
     "isDynamicEntry": true,
     "imports": [
@@ -174,10 +174,6 @@
     "file": "_app/immutable/assets/_page-97c8dd71.css",
     "src": "src/routes/memory/+page.css"
   },
-  "src/routes/todo/+page.css": {
-    "file": "_app/immutable/assets/_page-6c3302c5.css",
-    "src": "src/routes/todo/+page.css"
-  },
   "src/routes/telltale/+page.css": {
     "file": "_app/immutable/assets/_page-8fb5844a.css",
     "src": "src/routes/telltale/+page.css"
@@ -185,5 +181,9 @@
   "src/routes/clicker/+page.css": {
     "file": "_app/immutable/assets/_page-af3fd41b.css",
     "src": "src/routes/clicker/+page.css"
+  },
+  "src/routes/todo/+page.css": {
+    "file": "_app/immutable/assets/_page-6c3302c5.css",
+    "src": "src/routes/todo/+page.css"
   }
 }

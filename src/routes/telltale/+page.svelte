@@ -10,6 +10,7 @@ $: story = stories.find((story) => story.id == storyId);
   <title>Story Game</title>
 </head>
 
+<body>
 <a href="/#projects" class="goBack">Go Back</a>
 <div class="background"></div>
 <main>
@@ -28,6 +29,7 @@ $: story = stories.find((story) => story.id == storyId);
     {/key}
   </div>
 </main>
+</body>
 
 <style>
 .background{
