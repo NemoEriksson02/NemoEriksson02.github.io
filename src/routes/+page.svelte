@@ -174,8 +174,19 @@ onMount(()=>{
             </div>
         </section>
 
+        <section class="project" id="telltale">
+            <div id="telltaleSidebar" class="sidebar whiteText">
+                <h1>Story Game<span class="mobileOnly">*</span></h1>
+                <p class="sectionDescription">
+                    A small story game about centering a div using css or js. It can either take 2 minutes or two hours
+                    depening on what choices you make. Choose carefully. 
+                    <span class="playtestLink">Click <a class="linkText" href="/telltale">here</a> to choose your path.</span>
+                </p>
+            </div>
+        </section>
+
         <section class="project" id="other">
-            <div id="otherSidebar" class="sidebar">
+            <div id="otherSidebar" class="sidebar whiteText">
                 <h1>Other projects</h1>
                 <a class="mobileOnly linkCover" 
                     target="_blank" rel="noopener noreferrer" 
@@ -374,6 +385,9 @@ a:hover{
 .project:nth-of-type(3){
     background: #dcd7c9;
 }
+.project:nth-of-type(4){
+    background: #282b30;
+}
 .project:last-of-type{
     background: #21262D;
 }
@@ -412,11 +426,11 @@ a:hover{
 .sectionDescription{
     position: relative;
     left: calc(100% + 50px);
-    font-size: 15px;
+    font-size: 17px;
     overflow-wrap: normal;
     display: block;
-    height: 200px;
-    width: 500px;
+    height: 85%;
+    width: 222%;
     color: #1E2022;
 }
 
@@ -458,12 +472,16 @@ a:hover{
     background: #363660;
 }
 
+#telltaleSidebar{
+    background: #7289da;
+}
+
 #otherSidebar{
     background: #161B22;
 }
 
-#otherSidebar .sectionDescription,
-#otherSidebar .linkText{
+.whiteText .sectionDescription,
+.whiteText .linkText{
     color: #e0e0e0;
     border-color: #e0e0e0;
 }
@@ -724,16 +742,6 @@ a:hover{
         height: 120px;
         border: none !important;
         border-radius: 4px;
-    }
-
-    #cookieSidebar{
-        background: #a27b5c;
-    }
-    #todoSidebar{
-        background: #708090;   
-    }
-    #otherSidebar{
-        background: #1E2022;
     }
 
     .sidebar h1{
