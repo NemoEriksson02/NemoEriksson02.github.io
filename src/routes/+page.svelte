@@ -1,18 +1,20 @@
 <script>
 import { onMount } from "svelte";
 
-/* ===== Functions ===== */
-
-function isInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+/* ===== Classes ===== */
+class Project{
+    constructor(name, title, content, linkText, colors, hasWhiteText=false, mobileOnly=true){
+        this.name = name;
+        this.title = title;
+        this.content = content;
+        this.linkText = linkText.split('LINK');
+        this.colors = colors;
+        this.mobileOnly = mobileOnly;
+        this.hasWhiteText = hasWhiteText;
+    }
 }
 
+/* ===== Functions ===== */
 function writeText(el, text, written, index, delay){
     setTimeout(()=>{
         let interval = setInterval(() => {
@@ -47,6 +49,34 @@ let writeTextDelay2 = 500;
 
 let phoneNavEl;
 let showPhoneNav = false;
+
+let projects = [
+    new Project(
+        'clicker', 'Clicker of Cookies', 
+        'A simple cookie clicker clone and the first big project I made in Svelte.', 
+        'Click LINK to play it.', 
+        ['#dcd7c9', '#404d4f']),
+    new Project(
+        'todo', 'ToDo List',
+        'A (mostly) working ToDo list where you can add and remove tasks as you can with most ToDo lists.',
+        'You can click LINK to test it.',
+        ['#c9d6df', '#52616B']
+    ),
+    new Project(
+        'memory', 'Memory Game',
+        'A very simple memory game. It is what it is and nothing more. It works just like normal memory.',
+        'Click LINK to play.',
+        ['#dcd7c9', '#363660']
+    ),
+    new Project(
+        'telltale', 'Story Game',
+        'A small story game about centering a div using css or js. It can either take 2 minutes or two hours\
+            depening on what choices you make. Choose carefully.',
+        'Click LINK to choose your path.',
+        ['#282b30', '#7289da'],
+        true
+    )
+]
 
 onMount(()=>{
     let isWriting = false;
@@ -144,46 +174,21 @@ onMount(()=>{
 
     <!-- ===== Project sections ===== -->
     <section class="projectContainer" id="projects">
-        <section class="project" id="clicker">
-            <div id="cookieSidebar" class="sidebar">
-                <h1>Clicker of Cookies<span class="mobileOnly">*</span></h1>
-                <p class="sectionDescription">
-                    A simple cookie clicker clone and the first big project I made in Svelte.
-                    <span class="playtestLink">Click <a class="linkText" href="/clicker">here</a> to play it.</span>
-                </p>
-            </div>
-        </section>
-
-        <section class="project" id="todo">
-            <div id="todoSidebar" class="sidebar">
-                <h1>ToDo list<span class="mobileOnly">*</span></h1>
-                <p class="sectionDescription">
-                    A (mostly) working ToDo list where you can add and remove tasks as you can with most ToDo lists. 
-                    <span class="playtestLink">You can click <a class="linkText" href="/todo">here</a> to try it.</span>
-                </p>
-            </div>
-        </section>
-
-        <section class="project" id="memory">
-            <div id="memorySidebar" class="sidebar">
-                <h1>Memory<span class="mobileOnly">*</span></h1>
-                <p class="sectionDescription">
-                    A very simple memory game. It is what it is and nothing more. It works just like normal memory.
-                    <span class="playtestLink">Click <a class="linkText" href="/memory">here</a> to play it.</span>
-                </p>
-            </div>
-        </section>
-
-        <section class="project" id="telltale">
-            <div id="telltaleSidebar" class="sidebar whiteText">
-                <h1>Story Game<span class="mobileOnly">*</span></h1>
-                <p class="sectionDescription">
-                    A small story game about centering a div using css or js. It can either take 2 minutes or two hours
-                    depening on what choices you make. Choose carefully. 
-                    <span class="playtestLink">Click <a class="linkText" href="/telltale">here</a> to choose your path.</span>
-                </p>
-            </div>
-        </section>
+        {#each projects as project}
+            <section class="project" style={`background: ${project.colors[0]};`}>
+                <div class="sidebar" class:whiteText={project.hasWhiteText}
+                    style={`background: ${project.colors[1]};`}>
+                    <h1>{project.title}{#if project.mobileOnly}<span class="mobileOnly">*</span>{/if}</h1>
+                    <p class="sectionDescription">{project.content}
+                        <span class="playTestLink">
+                            {project.linkText[0]}
+                            <a href={`/${project.name}`} class="linkText">here</a>
+                            {project.linkText[1]}
+                        </span>
+                    </p>
+                </div>
+            </section>
+        {/each}
 
         <section class="project" id="other">
             <div id="otherSidebar" class="sidebar whiteText">
@@ -376,18 +381,7 @@ a:hover{
     margin: 50px 0 50px 100px;
     border-radius: 4px;
 }
-.project:nth-of-type(1){
-    background: #dcd7c9;
-}
-.project:nth-of-type(2){
-    background: #c9d6df;
-}
-.project:nth-of-type(3){
-    background: #dcd7c9;
-}
-.project:nth-of-type(4){
-    background: #282b30;
-}
+
 .project:last-of-type{
     background: #21262D;
 }
@@ -452,28 +446,9 @@ a:hover{
     color: #e0e0e0;
 }
 
-/* ===== ID-selectors ===== */
-
 #home{
     background: #EFEFEF;
     height: 100vh;
-}
-
-#cookieSidebar{
-    background: #404e4f;
-    border-right: 4px solid #a27b5c;
-}
-
-#todoSidebar{
-    background: #52616B;
-}
-
-#memorySidebar{
-    background: #363660;
-}
-
-#telltaleSidebar{
-    background: #7289da;
 }
 
 #otherSidebar{
@@ -487,7 +462,6 @@ a:hover{
 }
 
 /* ===== ANIMATIONS =====*/
-
 @keyframes spawnBox{
     0%{
         height: 5px;
@@ -802,5 +776,4 @@ a:hover{
         opacity: .25;
     }
 }
-
 </style>
