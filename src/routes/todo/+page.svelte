@@ -16,6 +16,7 @@
             items.push(itemText);
             clickedItems.push(false);
             items = items;
+            newItemText.value = '';
             saveTasks();
         }
     }
@@ -59,7 +60,9 @@
     <hr/>
 
     <section id="addItemSection">
-        <input autocomplete="off" bind:this={newItemText} id="newItemText">
+        <input autocomplete="off" 
+            on:keypress={ (event) => { if(event['key']=='Enter'){ addItem() }}} 
+            bind:this={newItemText} id="newItemText">
         <button on:click={addItem}>Add Item</button>
     </section>
 
@@ -70,8 +73,7 @@
         <p class="item" on:keydown={console.log()} on:click={toggleClicked(items.indexOf(text))}>
             <span class="completed" class:hidden={!clickedItems[items.indexOf(text)]}>DONE</span>
             {text}
-            <span class="remove" on:keydown={console.log()} on:click={()=>{removeClicked(items.indexOf(text))}}>REMOVE</span>
-        </p>
+        </p><span class="remove" on:keydown={console.log} on:click={()=>{removeClicked(items.indexOf(text))}}>REMOVE</span>
         {/each}
     </section>
 
@@ -189,30 +191,31 @@ button{
     background: #F0F5F9; 
     border-radius: 5px; 
     width: 80%;
-    margin: 10px auto;
+    margin: 0 auto;
     padding: 10px 20px;
     font-size: 1.2rem;
     overflow: hidden;
 }
 
-.item:hover .remove{
+.item:hover + .remove, .remove:hover{
     display: inline;
     opacity: 1;
 }
 
 .remove{
-    opacity: 0;
-    transition: opacity 0.4s;
-    font-size: 0.53rem;
-    font-weight: 700;
-    background: #52616B;
-    padding: 6px 10px;
-    color: white;
-    border-radius: 5px;
-    float: right;
-    vertical-align: middle;
-    margin-right: 5px;
-    display: inline;
+    opacity: 0; 
+    transition: opacity 0.4s; 
+    font-size: 0.53rem; 
+    font-weight: 700; 
+    background: #52616B; 
+    padding: 6px 10px; 
+    color: white; 
+    border-radius: 5px;  
+    display: inline; 
+    left: calc(80% - 25px - calc(2% - 2vw));
+    top: -32px; 
+    position: relative; 
+    z-index: 3; 
 }
 
 .completed{
