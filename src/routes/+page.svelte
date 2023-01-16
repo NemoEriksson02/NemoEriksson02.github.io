@@ -9,8 +9,8 @@ class Project{
         this.content = content;
         this.linkText = linkText.split('LINK');
         this.colors = colors;
-        this.mobileOnly = mobileOnly;
         this.hasWhiteText = hasWhiteText;
+        this.mobileOnly = mobileOnly;
     }
 }
 
@@ -56,6 +56,12 @@ let projects = [
         'A simple cookie clicker clone and the first big project I made in Svelte.', 
         'Click LINK to play it.', 
         ['#dcd7c9', '#404d4f']),
+    new Project(
+        'chat', 'Chatbot',
+        'A chatbot that you can try to speak with. Note however that it isn\'t that smart and cant answer even the simplest of questions.',
+        'Click LINK to speak to it.',
+        ['#778da9', '#415a77'],
+    ),
     new Project(
         'todo', 'ToDo List',
         'A (mostly) working ToDo list where you can add and remove tasks as you can with most ToDo lists.',
@@ -107,7 +113,7 @@ onMount(()=>{
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
-    <title>Nemo Eriksson | Portfolio</title>
+    <title>Nemo Eriksson | Home</title>
 </head>
 
 <body>

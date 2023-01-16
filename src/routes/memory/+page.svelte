@@ -204,6 +204,7 @@ a{
   font-size: 18px;
   position: relative;
   top: 10px;
+  left: 10px;
 }
 
 a:hover{

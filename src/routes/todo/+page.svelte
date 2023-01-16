@@ -73,7 +73,8 @@
         <p class="item" on:keydown={console.log()} on:click={toggleClicked(items.indexOf(text))}>
             <span class="completed" class:hidden={!clickedItems[items.indexOf(text)]}>DONE</span>
             {text}
-        </p><span class="remove" on:keydown={console.log} on:click={()=>{removeClicked(items.indexOf(text))}}>REMOVE</span>
+        </p>
+        <span class="remove" on:keydown={console.log} on:click={()=>{removeClicked(items.indexOf(text))}}>REMOVE</span>
         {/each}
     </section>
 
@@ -106,15 +107,11 @@
     top: 15px;
 }
 .goBack{
-    opacity: .25;
-    color: #1E2022;
+    color: black;
     text-decoration: none;
     font-variant: normal;
     transition: all .25s;
-    font-size: 18px;
-}
-.goBack:hover{
-    opacity: 1;
+    font-size: 16px;
 }
 
 body{
@@ -182,7 +179,14 @@ button{
 }
 
 ::-webkit-scrollbar{
-    visibility: hidden;
+    background: #C9D6DF;
+    width: 6px;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #F0F5F9;
+    border-radius: 3px;
 }
 
 .item{
