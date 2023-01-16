@@ -6,7 +6,7 @@ let bot = new ElizaBot();
 let time = new Date();
 let chatInput;
 let chatHistoryDiv;
-let messages = [];
+let messages = [[bot.getInitial(),'bot-sent','']];
 let isTyping = false;
 
 function getTime(){
@@ -51,10 +51,12 @@ function say(){
     
 }
 
-function checkInput(keyEvent){
-    if(keyEvent['key']=='Enter'){
-        if(chatInput.value.length > 0)
-            say();
+function checkInput(keyEvent=undefined){
+    if (keyEvent == undefined && chatInput.value.length > 0){
+        say();
+    }
+    else if(keyEvent['key']=='Enter' && chatInput.value.length > 0){
+        say();
     }
 }
 
@@ -75,14 +77,19 @@ onMount(()=> {
     <section class="chatHistory" bind:this={chatHistoryDiv}>
         {#each messages as message}
             <p class={message[1]}>
-                {message[0]}
-                <span class="time"> {message[2]}</span>
+                {#if message[1]=='bot-sent'}
+                    <img class="pfp" src="eliza_pfp.png" alt="Eliza"/>
+                {/if}
+                <span class="msg-content">{message[0]}</span>
+                {#if message[1]=='user-sent'}
+                    <span class="time"> {message[2]}</span>
+                {/if}
             </p>
         {/each}
     </section>
     <section class="inputSection">
         <input type="text" placeholder="Type message" bind:this={chatInput} on:keydown={e=>checkInput(e)}/>
-        <img src="/arrow.png" alt="Submit" class:typing={isTyping}>
+        <img src="/arrow.png" alt="Submit" class:typing={isTyping} on:keydown={e=>checkInput(e)} on:click={()=>{checkInput()}}>
     </section>
     <p class="disclaimer">*Warning: The chatbot is not smart and can't give answers to the simplest of questions</p>
 </body>
@@ -143,6 +150,14 @@ onMount(()=> {
     border: 3px solid #415a77;
     color: #778da9;
     word-wrap: break-word;
+    transition: .25s scale;
+}
+.chatHistory p:hover{
+    scale: 1.015;
+}
+.user-sent .msg-content{
+    position: relative;
+    left: 80px;
 }
 .time{
     font-size: 16px;
@@ -165,8 +180,16 @@ onMount(()=> {
     border-color: #4f6a8b !important;
     color: #4f6a8b !important;
 }
-.bot-sent .time{
-    display: none;
+
+.pfp{
+    height: 40px;
+    aspect-ratio: 1;
+    margin: 0;
+    padding: 0;
+    background: #4f6a8b;
+    border-radius: 50%;
+    vertical-align: middle;
+    transform: translate(-5px, -2px);
 }
 
 .inputSection{
@@ -201,7 +224,7 @@ onMount(()=> {
     right: 0px;
     border-radius: 50%;
     transition: .325s opacity;
-    pointer-events: none;
+    
     background: #778da9;
 }
 
