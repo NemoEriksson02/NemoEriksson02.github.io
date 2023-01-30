@@ -54,7 +54,7 @@
     </div>
 <main>
     <header>
-        <h1 style="color: #1E2022;">ToDo List</h1>
+        <h1 class="title">ToDo List</h1>
     </header>
 
     <hr/>
@@ -63,12 +63,13 @@
         <input autocomplete="off" 
             on:keypress={ (event) => { if(event['key']=='Enter'){ addItem() }}} 
             bind:this={newItemText} id="newItemText">
-        <button on:click={addItem}>Add Item</button>
+        <button on:click={addItem} title="Add new item to list">Add Item</button>
     </section>
 
     <hr/>
 
     <section id="items">
+        <img class="background-img" src="todo-bg.jpg" alt="" class:faded={items.length>=3}>
         {#each items as text}
         <p class="item" on:keydown={console.log()} on:click={toggleClicked(items.indexOf(text))}>
             <span class="completed" class:hidden={!clickedItems[items.indexOf(text)]}>DONE</span>
@@ -80,19 +81,27 @@
 
     <hr/>
 </main>
-<p id="credits">Made by Nemo Eriksson 2022</p>
+<p id="credits">Made by Nemo Eriksson 2022 <span>image: "Wumpus" by discord</span></p>
 </body>
 
 <style>
-    
 *{
-    font-family: arial, sans-serif;
+    font-family: Arial;
     font-variant: small-caps;
     user-select: none;
 }
 
+:root{
+    --color-dark: #2a2e31;
+    --color-mid-dark: #2c3135;
+    --color-mid: #35383d;
+    --color-mid-light: #42454a;
+    --color-light: #adb5bd;
+    --color-lighter: #e1e4e7;
+}
+
 .background{
-    background: #52616B;
+    background: var(--color-mid-dark);
     height: 100%;
     width: 100%;
     position: absolute;
@@ -107,15 +116,15 @@
     top: 15px;
 }
 .goBack{
-    color: black;
+    color: var(--color-light);
     text-decoration: none;
     font-variant: normal;
     transition: all .25s;
     font-size: 16px;
 }
 
-body{
-    background: #52616B;
+.title{
+    color: var(--color-light)
 }
 
 main{
@@ -123,9 +132,8 @@ main{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: #C9D6DF;
-    border: 4px solid #1E2022;
-    border-radius: 15px;
+    background-color: var(--color-mid);
+    border-radius: 4px;
     width: 40%;
     height: 90%;
     min-width: 400px;
@@ -138,9 +146,9 @@ h1{
 hr{
     width: 80%;
     border: none;
-    height: 4px;
-    margin: 20px auto;
-    background: #1E2022;
+    height: 2px;
+    margin: 22px auto;
+    background: var(--color-light);
     border-radius: 5px;
 }
 
@@ -152,7 +160,7 @@ hr{
 }
 
 input{
-    background: #F0F5F9;
+    background: var(--color-lighter);
     border: none;
     border-radius: 5px;
     outline: none;
@@ -160,14 +168,19 @@ input{
     width: 45%;
     text-align: center;
 }
+
 button{
-    background: #52616B;
+    background: var(--color-dark);
     border: none;
     outline: none;
     border-radius: 5px;
-    color: #F0F5F9;
+    color: var(--color-lighter);
     font-weight: 700;
     width: 90px;
+}
+
+button:hover{
+    cursor: pointer;
 }
 
 #items{
@@ -178,21 +191,37 @@ button{
     margin: 0 auto;
 }
 
+.background-img{
+    width: 50%;
+    opacity: 1;
+    position: fixed;
+    z-index: -1;
+    left: 40%;
+    top: 300px;
+    transform: translateX(-50%);
+    transition: 1s opacity;
+}
+
+.background-img.faded{
+    opacity: .5;
+}
+
 ::-webkit-scrollbar{
-    background: #C9D6DF;
-    width: 6px;
-    border-radius: 3px;
+    background: var(--color-mid-light);
+    width: 4px;
+    border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb{
-    background: #F0F5F9;
+    background: var(--color-light);
     border-radius: 3px;
 }
 
 .item{
     list-style: none; 
     text-align: left;
-    background: #F0F5F9; 
+    background: var(--color-light); 
+    color: var(--color-dark);
     border-radius: 5px; 
     width: 80%;
     margin: 0 auto;
@@ -211,9 +240,9 @@ button{
     transition: opacity 0.4s; 
     font-size: 0.53rem; 
     font-weight: 700; 
-    background: #52616B; 
+    background: var(--color-mid); 
     padding: 6px 10px; 
-    color: white; 
+    color: var(--color-lighter); 
     border-radius: 5px;  
     display: inline; 
     left: calc(80% - 25px - calc(2% - 2vw));
@@ -225,9 +254,9 @@ button{
 .completed{
     font-size: 0.53rem;
     font-weight: 700;
-    background: #C9D6DF;
+    background: var(--color-mid-light);
     padding: 6px 10px;
-    color: #52616B;
+    color: var(--color-lighter);
     border-radius: 5px;
     float: left;
     vertical-align: middle;
@@ -246,8 +275,13 @@ button{
     left: 10px;
     bottom: 0px;
     font-size: 0.65rem;
-    color: #1E2022;
+    color: var(--color-light);
     font-weight: 600;
+}
+
+#credits span{
+    font-size: 9px;
+    font-weight: normal;
 }
 
 </style>

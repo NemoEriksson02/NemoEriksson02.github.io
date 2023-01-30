@@ -66,7 +66,8 @@ let projects = [
         'todo', 'ToDo List',
         'A (mostly) working ToDo list where you can add and remove tasks as you can with most ToDo lists.',
         'You can click LINK to test it.',
-        ['#c9d6df', '#52616B']
+        ['#748457', '#42454a'],
+        true
     ),
     new Project(
         'memory', 'Memory Game',
