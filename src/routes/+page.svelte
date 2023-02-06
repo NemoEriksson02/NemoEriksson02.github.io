@@ -134,7 +134,7 @@ onMount(()=>{
     <nav>
         <a href="#home">Home</a>
         <a href="#projects">Projects</a>
-        <p class="waterstamp">eemo eriksson</p>
+        <p class="waterstamp">nemo eriksson</p>
         <a href="/changelog">Changelog</a>
     </nav>
 
