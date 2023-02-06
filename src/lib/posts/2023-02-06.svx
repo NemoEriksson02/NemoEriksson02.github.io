@@ -1,0 +1,27 @@
+---
+date: "2023-02-06"
+points: [
+    ["added", "Changelog and changelog subpages"],
+    ["added", "Changelog link on main page"],
+    ["fixed", "Global page styling"]
+]
+---
+
+**Main feature**: Changelog
+<br/>
+
++ **Changelog**
+    + Ordered by newest first
+
+    + Subpages with more detail
+
+    + Link to full changelog on GitHub
+    
+    + Link to changelog from main page navigation bar
+
+    + Ability to search by published date 
+<br/>
+
+**Other changes**:
+ 
++ Removed global css styling

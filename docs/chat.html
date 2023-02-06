@@ -5,23 +5,61 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="./_app/immutable/start-61fdb2de.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-31c572a9.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-84f45044.js">
+		<link href="./_app/immutable/assets/_page-76227687.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/start-6ba20378.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-887a00a6.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-702bfc07.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-b21cceae.js">
+		<link rel="modulepreload" href="./_app/immutable/components/layout.svelte-62a37b68.js">
+		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-7b9cbfbc.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-8d2a742b.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/chat/_page.svelte-7fb9ee2d.js">
 	</head>
 	<body>
 		<div style="display: contents">
-		<script type="module" data-sveltekit-hydrate="45h">
-			import { start } from "./_app/immutable/start-61fdb2de.js";
+
+
+<head class="svelte-untjkq"><title class="svelte-untjkq">Chatbot</title></head>
+
+<div id="bg" class="svelte-untjkq"></div>
+<body class="svelte-untjkq"><section class="chatHistory svelte-untjkq"><p class="bot-sent svelte-untjkq"><img class="pfp svelte-untjkq" src="eliza_pfp.png" alt="Eliza">
+                
+                <span class="msg-content svelte-untjkq">Is something troubling you ?</span>
+            </p></section>
+    <section class="optionsSection svelte-untjkq"><button class="return svelte-untjkq"><a href="/#projects" class="svelte-untjkq"><span class="svelte-untjkq">Go back</span></a></button>
+        <button class="new-chat svelte-untjkq"><span class="svelte-untjkq">New chat</span></button>
+        <div class="conversations svelte-untjkq"><p class="conversation svelte-untjkq">Chat 1
+                    <span class="convoOptions svelte-untjkq"><span class="convoOption svelte-untjkq">⭯
+                        </span>
+                        <span class="convoOption svelte-untjkq">⤫
+                        </span></span>
+                </p></div></section>
+    <section class="inputSection svelte-untjkq"><input type="text" placeholder="Type message" class="svelte-untjkq">
+        <img src="/arrow.png" alt="Submit" class="svelte-untjkq"></section>
+    <p class="disclaimer svelte-untjkq">*Warning: The chatbot is not smart and can&#39;t give answers to the simplest of questions</p>
+</body>
+
+
+		<script type="module" data-sveltekit-hydrate="123c3p8">
+			import { start } from "./_app/immutable/start-6ba20378.js";
 
 			start({
 				env: {},
-				hydrate: null,
+				hydrate: {
+					status: 200,
+					error: null,
+					node_ids: [0, 5],
+					params: {},
+					route: {"id":"/chat"},
+					data: [null,null],
+					form: null
+				},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
+				target: document.querySelector('[data-sveltekit-hydrate="123c3p8"]').parentNode,
 				trailing_slash: "never",
-				version: "1675069206938"
+				version: "1675683686393"
 			});
-		</script></div>
+		</script>
+	</div>
 	</body>
 </html>

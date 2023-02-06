@@ -5,23 +5,61 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="./_app/immutable/start-61fdb2de.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-31c572a9.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-84f45044.js">
+		<link href="./_app/immutable/assets/_page-5fb7f87b.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/start-6ba20378.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-887a00a6.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-702bfc07.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-b21cceae.js">
+		<link rel="modulepreload" href="./_app/immutable/components/layout.svelte-62a37b68.js">
+		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-7b9cbfbc.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-8d2a742b.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/todo/_page.svelte-203a9988.js">
 	</head>
 	<body>
 		<div style="display: contents">
-		<script type="module" data-sveltekit-hydrate="45h">
-			import { start } from "./_app/immutable/start-61fdb2de.js";
+
+
+<head class="svelte-1wcckcb"><title class="svelte-1wcckcb">ToDo List</title></head>
+
+<body class="svelte-1wcckcb"><div class="background svelte-1wcckcb"></div>
+    <div class="backContainer svelte-1wcckcb"><a class="goBack svelte-1wcckcb" href="/#projects">Go Back</a></div>
+<main class="svelte-1wcckcb"><header class="svelte-1wcckcb"><h1 class="title svelte-1wcckcb">ToDo List</h1></header>
+
+    <hr class="svelte-1wcckcb">
+
+    <section id="addItemSection" class="svelte-1wcckcb"><input autocomplete="off" id="newItemText" class="svelte-1wcckcb">
+        <button title="Add new item to list" class="svelte-1wcckcb">Add Item</button></section>
+
+    <hr class="svelte-1wcckcb">
+
+    <section id="items" class="svelte-1wcckcb"><img class="background-img svelte-1wcckcb" src="todo-bg.jpg" alt="">
+        </section>
+
+    <hr class="svelte-1wcckcb"></main>
+<p id="credits" class="svelte-1wcckcb">Made by Nemo Eriksson 2022 <span class="svelte-1wcckcb">image: &quot;Wumpus&quot; by discord</span></p>
+</body>
+
+
+		<script type="module" data-sveltekit-hydrate="19acggu">
+			import { start } from "./_app/immutable/start-6ba20378.js";
 
 			start({
 				env: {},
-				hydrate: null,
+				hydrate: {
+					status: 200,
+					error: null,
+					node_ids: [0, 9],
+					params: {},
+					route: {"id":"/todo"},
+					data: [null,null],
+					form: null
+				},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
+				target: document.querySelector('[data-sveltekit-hydrate="19acggu"]').parentNode,
 				trailing_slash: "never",
-				version: "1675069206938"
+				version: "1675683686393"
 			});
-		</script></div>
+		</script>
+	</div>
 	</body>
 </html>

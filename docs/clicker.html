@@ -5,23 +5,88 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="./_app/immutable/start-61fdb2de.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-31c572a9.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-84f45044.js">
+		<link href="./_app/immutable/assets/_page-af3fd41b.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/start-6ba20378.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-887a00a6.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-702bfc07.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-b21cceae.js">
+		<link rel="modulepreload" href="./_app/immutable/components/layout.svelte-62a37b68.js">
+		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-7b9cbfbc.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-8d2a742b.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/clicker/_page.svelte-19044592.js">
 	</head>
 	<body>
 		<div style="display: contents">
-		<script type="module" data-sveltekit-hydrate="45h">
-			import { start } from "./_app/immutable/start-61fdb2de.js";
+
+
+<head><title>Clicker of Cookies</title></head>
+
+<body class="svelte-14rqpk8"><div class="backgroundColor svelte-14rqpk8"></div>
+    <section id="cookieSection" class="svelte-14rqpk8"><h1 class="title svelte-14rqpk8" id="cookieDisplay">0 cookies</h1>
+        <div id="cookie" class="svelte-14rqpk8"></div></section>
+
+    <div id="messageDiv" class="svelte-14rqpk8"><p class="slideDown svelte-14rqpk8"></p></div>
+    <div id="backContainer" class="svelte-14rqpk8"><a href="/#projects" id="backToMain" class="svelte-14rqpk8">Go Back</a></div> 
+
+    <section id="upgradeSection" class="svelte-14rqpk8"><h1 class="title upgradeTitle svelte-14rqpk8">Upgrades</h1>
+        
+        <div class="upgradeDiv svelte-14rqpk8"><button class="upgrade svelte-14rqpk8">+0.2cpc 50c</button>
+        <p class="upgradeAmt svelte-14rqpk8">x0</p></div>
+
+        <div class="upgradeDiv svelte-14rqpk8"><button class="upgrade svelte-14rqpk8">Unkown Upgrade</button>
+        <p class="upgradeAmt svelte-14rqpk8">x0</p></div>
+        
+        <div class="upgradeDiv svelte-14rqpk8 hidden"><button class="upgrade svelte-14rqpk8">none</button>
+        <p class="upgradeAmt svelte-14rqpk8">x0</p></div>
+        
+        <div class="upgradeDiv svelte-14rqpk8 hidden"><button class="upgrade svelte-14rqpk8">none</button>
+        <p class="upgradeAmt svelte-14rqpk8">x0</p></div>
+        
+        <div class="upgradeDiv svelte-14rqpk8 hidden"><button class="upgrade svelte-14rqpk8">none</button>
+        <p class="upgradeAmt svelte-14rqpk8">x0</p></div>
+
+        <div id="upgradeDivider" class="svelte-14rqpk8"></div>
+
+        <div class="upgradeDiv svelte-14rqpk8"><button class="upgrade svelte-14rqpk8">Auto Clicker 500c</button>
+        <button class="upgrade svelte-14rqpk8 hidden">Auto Clicker</button>
+        <p class="upgradeAmt svelte-14rqpk8">Disabled</p></div></section>
+
+
+    <section id="tabSection" class="svelte-14rqpk8"><div id="tabSelection" class="svelte-14rqpk8"><button class="tabButton svelte-14rqpk8 selectedTabButton">Stats</button>
+            <button class="tabButton svelte-14rqpk8">Options</button></div>
+
+        <section id="tabContent" class="svelte-14rqpk8"><div id="statSection" class="svelte-14rqpk8"><h1 class="title subTitle svelte-14rqpk8">Stats</h1>
+                <span class="stat leftstat svelte-14rqpk8">Total clicks: 0</span>
+                <span class="stat midstat svelte-14rqpk8">CPC: 1</span>
+                <span class="stat rightstat svelte-14rqpk8">CPS: 0</span></div>
+            <div id="optionSection" class="svelte-14rqpk8 hidden"><h1 class="title subTitle svelte-14rqpk8">Options</h1>
+                <button class="progressBtn svelte-14rqpk8" id="saveProgressBtn">Save</button>
+                <button class="progressBtn svelte-14rqpk8" id="loadProgressBtn">Load</button>
+                <button class="progressBtn svelte-14rqpk8" id="resetProgressBtn">Reset</button></div></section>
+        <p id="credit" class="svelte-14rqpk8">Made by Nemo Eriksson 2022</p></section>
+</body>
+
+
+		<script type="module" data-sveltekit-hydrate="1prfwf4">
+			import { start } from "./_app/immutable/start-6ba20378.js";
 
 			start({
 				env: {},
-				hydrate: null,
+				hydrate: {
+					status: 200,
+					error: null,
+					node_ids: [0, 6],
+					params: {},
+					route: {"id":"/clicker"},
+					data: [null,null],
+					form: null
+				},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
+				target: document.querySelector('[data-sveltekit-hydrate="1prfwf4"]').parentNode,
 				trailing_slash: "never",
-				version: "1675069206938"
+				version: "1675683686393"
 			});
-		</script></div>
+		</script>
+	</div>
 	</body>
 </html>

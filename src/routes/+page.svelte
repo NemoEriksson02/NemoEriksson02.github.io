@@ -128,13 +128,14 @@ onMount(()=>{
         </button>
         <hr class="navBreak">
         <a href="#home" on:click={togglePhoneNav}>Home</a>
-        <a href="#clicker" on:click={togglePhoneNav}>Projects</a>
+        <a href="#projects" on:click={togglePhoneNav}>Projects</a>
         <hr class="navBreak">
     </div>
     <nav>
         <a href="#home">Home</a>
         <a href="#projects">Projects</a>
-        <p class="waterstamp">nemo eriksson</p>
+        <p class="waterstamp">eemo eriksson</p>
+        <a href="/changelog">Changelog</a>
     </nav>
 
     <!-- ===== Landing page/Home section ===== -->
@@ -243,20 +244,6 @@ onMount(()=>{
     user-select: none;
 }
 
-body{
-    height: 200vh;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    background: whitesmoke;
-}
-
-:global(body){
-    padding: 0;
-    margin: 0;
-}
-
 nav{
     position: fixed;
     top: 0;
@@ -338,6 +325,7 @@ a:hover{
     position: relative;
     top: 20px;
     font-size: 18px;
+    overflow: hidden;
 }
 
 .descriptionBox article{

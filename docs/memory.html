@@ -5,23 +5,85 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="./_app/immutable/start-61fdb2de.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-31c572a9.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-84f45044.js">
+		<link href="./_app/immutable/assets/_page-882ba3de.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/start-6ba20378.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-887a00a6.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-702bfc07.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-b21cceae.js">
+		<link rel="modulepreload" href="./_app/immutable/components/layout.svelte-62a37b68.js">
+		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-7b9cbfbc.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-8d2a742b.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/memory/_page.svelte-91fef73b.js">
 	</head>
 	<body>
 		<div style="display: contents">
-		<script type="module" data-sveltekit-hydrate="45h">
-			import { start } from "./_app/immutable/start-61fdb2de.js";
+
+
+<head class="svelte-1kw962n"><title class="svelte-1kw962n">Memory</title></head>
+
+<body class="svelte-1kw962n"><div class="background svelte-1kw962n"></div>
+  <a href="/#projects" class="svelte-1kw962n">Go Back</a>
+  <h2 class="svelte-1kw962n">Memory</h2>
+  <main class="svelte-1kw962n"><div class="row svelte-1kw962n"><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: magenta;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: slategray;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: red;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: orange;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: slategray;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: red;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: orange;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: green;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: green;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: yellow;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: yellow;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div><div class="card svelte-1kw962n"><div class="front svelte-1kw962n" style="background: magenta;"></div>
+          <img class="back svelte-1kw962n" src="/front.png" alt="">
+        </div></div></main>
+
+  <div class="restart svelte-1kw962n hidden"><h1 class="svelte-1kw962n">You won in 0 flips</h1>
+    <button class="svelte-1kw962n">Restart</button></div>
+
+  <h1 class="statText svelte-1kw962n">Difficulty: <br class="svelte-1kw962n">
+    <button class="difficultyButton activeDifficulty svelte-1kw962n">Bright Colors</button>
+    <button class="difficultyButton svelte-1kw962n">Faded colors</button>
+    <button class="difficultyButton svelte-1kw962n">Grayscale</button>
+    <button class="difficultyButton svelte-1kw962n">Color blind</button></h1>
+  <h1 class="statText svelte-1kw962n">Total Flips: 0</h1>
+  <h1 class="statText svelte-1kw962n">Highscore: 0 
+    <span class="hsGrade svelte-1kw962n"></span></h1>
+</body>
+
+
+		<script type="module" data-sveltekit-hydrate="b3dxgl">
+			import { start } from "./_app/immutable/start-6ba20378.js";
 
 			start({
 				env: {},
-				hydrate: null,
+				hydrate: {
+					status: 200,
+					error: null,
+					node_ids: [0, 7],
+					params: {},
+					route: {"id":"/memory"},
+					data: [null,null],
+					form: null
+				},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
+				target: document.querySelector('[data-sveltekit-hydrate="b3dxgl"]').parentNode,
 				trailing_slash: "never",
-				version: "1675069206938"
+				version: "1675683686393"
 			});
-		</script></div>
+		</script>
+	</div>
 	</body>
 </html>
