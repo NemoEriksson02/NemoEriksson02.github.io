@@ -1,6 +1,7 @@
 <script>
     /** @type {import('./$types').PageData} */
     export let data;
+    data.posts = data.posts.reverse();
 
     let searchbar;
     let searchQuery = '';
@@ -14,32 +15,32 @@
     <title>Changelog</title>
 </head>
 
-<div class="background"></div>
-
 <section class="topbar">
     <a class="back" href="/">Return to main</a>
     <input type="text" class="searchbar" bind:this={searchbar} on:keyup={search} placeholder="Search by date (YYYY-MM-DD)"/>
 </section>
 
-<main>
-    <h1 class="cl-title">Changelog</h1>
-    <a class="cl-full" target="_blank" rel="noopener noreferrer" 
-    href="https://github.com/NemoEriksson02/NemoEriksson02.github.io/commits/main">Full changelog</a>
-    
-    <div class="posts">
-        {#each data.posts.reverse() as post}
-            {#if post.meta.date.includes(searchQuery)}
-                <hr class="post-divider">
-                <h2>
-                    <a class="post-title" href={"/changelog/"+post.path}>{post.meta.date}</a>
-                </h2>
-                {#each post.meta.points as point}
-                    <p><span class={point[0]}>{point[0]}</span>{point[1]}</p>
-                {/each}
-            {/if}
-        {/each}
-    </div>
-</main>
+<div class="background">
+    <main>
+        <h1 class="cl-title">Changelog</h1>
+        <a class="cl-full" target="_blank" rel="noopener noreferrer" 
+        href="https://github.com/NemoEriksson02/NemoEriksson02.github.io/commits/main">Full changelog</a>
+        
+        <div class="posts">
+            {#each data.posts as post}
+                {#if post.meta.date.includes(searchQuery)}
+                    <hr class="post-divider">
+                    <h2>
+                        <a class="post-title" href={"/changelog/"+post.path}>{post.meta.date}</a>
+                    </h2>
+                    {#each post.meta.points as point}
+                        <p><span class={point[0]}>{point[0]}</span>{point[1]}</p>
+                    {/each}
+                {/if}
+            {/each}
+        </div>
+    </main>
+</div>
 
 <style>
     *{
@@ -55,11 +56,12 @@
 
     .background{
         z-index: -1;
-        width: 100%;
-        height: 100%;
         position: absolute;
         background: #EEEEF1;
-        top: 0;
+        min-height: calc(100vh - 110px);
+        height: fit-content;
+        padding-bottom: 100px;
+        width: 100%;
         left: 0;
     }
 
@@ -173,5 +175,6 @@
         vertical-align: middle;
         position: relative;
         left: 18px;
+        width: 200px;
     }
 </style>

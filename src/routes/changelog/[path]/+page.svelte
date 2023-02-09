@@ -1,25 +1,40 @@
 <script>
     import { onMount } from 'svelte';
-    /** @type {import('./$types').PageData} */
-    export let data;
+
+
+/** @type {import('./$types').PageData} */
+export let data;
+
+onMount(()=>{
+    try {
+        hljs.highlightAll();
+    } catch (error) {
+        location.reload();
+        console.log(error);
+    }
+});
 </script>
 
 <head>
     <title>Changelog {data.date}</title>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/tomorrow-night-bright.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 </head>
 
-<div class="background"></div>
 
 <section class="topbar">
     <a class="back" href="/changelog">Return to changelog</a>
 </section>
 
+<div class="background">
 <article>
     <h1 class="cl-title">{data.date}</h1>
     <main>
         <svelte:component this={data.content} />
     </main>
 </article>
+</div>
 
 <style>
     *{
@@ -34,11 +49,12 @@
 
     .background{
         z-index: -1;
-        width: 100%;
-        height: 100%;
         position: absolute;
         background: #EEEEF1;
-        top: 0;
+        min-height: calc(100vh - 110px);
+        height: fit-content;
+        padding-bottom: 100px;
+        width: 100%;
         left: 0;
     }
 
@@ -90,7 +106,6 @@
         display: table-cell;
         font-size: 18px;
         vertical-align: middle;
-        position: relative;
-        left: 18px;
+        padding-left: 18px;
     }
 </style>

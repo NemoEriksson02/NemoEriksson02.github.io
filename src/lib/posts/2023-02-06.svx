@@ -7,10 +7,10 @@ points: [
 ]
 ---
 
-**Main feature**: Changelog
+**Main feature:** Changelog
 <br/>
 
-+ **Changelog**
+**Changelog**
     + Ordered by newest first
 
     + Subpages with more detail
