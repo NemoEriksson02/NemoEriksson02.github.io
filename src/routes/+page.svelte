@@ -76,6 +76,12 @@ let projects = [
         ['#dcd7c9', '#363660']
     ),
     new Project(
+        'data', 'Database test',
+        'A website containing auto generated user data that you can search through. Very bare bones and minimal styling.',
+        'Click LINK to view.',
+        ['#dfdfdf', '#42454a']
+    ),
+    new Project(
         'telltale', 'Story Game',
         'A small story game about centering a div using css or js. It can either take 2 minutes or two hours\
             depening on what choices you make. Choose carefully.',

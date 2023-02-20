@@ -1,0 +1,26 @@
+---
+date: "2023-02-20"
+points: [
+    ["added", "Database test with search function"],
+    ["fixed", "Changelog update list spacing"]
+]
+---
+
+**Main feature:** Database test site
+<br/>
+
+**Database test site**
+    + Random user data
+
+    + Search function
+
+    + Multiple search options
+
+    + Detailed view
+
+<br/>
+
+**Other changes:**
+    + Fixed spacing between changelog list items
+
+    + Fixed changelog "Added" point text color

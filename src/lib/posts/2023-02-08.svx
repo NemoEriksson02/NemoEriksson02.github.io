@@ -24,4 +24,5 @@ different projects and subpages.
 
 **Other changes:**
     + Fixed so the changelog background scales with height
+
     + Fixed a bug where to changelog entries would be in reverse order when searching

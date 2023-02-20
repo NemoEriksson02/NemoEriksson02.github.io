@@ -122,6 +122,7 @@
 
     p span.added{
         background: #01bfb2;
+        color: white;
     }
     p span.fixed{
         background: #E7E7E7;
