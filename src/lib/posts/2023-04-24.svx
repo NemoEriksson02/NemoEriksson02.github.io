@@ -1,0 +1,50 @@
+---
+date: "2023-04-4"
+points: [
+    ["added", "Homepage with links to registration/login pages and contact section"],
+    ["added", "Contact Us section (work in progress)"],
+    ["added", "Sections for feature points on homepage"],
+    ["added", "Registration and login pages with implemented logic"],
+    ["added", "Password requirements, validation and encryption"],
+]
+---
+
+## Version 0.1.0
+# Initial Creation and features
+
+## Description
+This is the intial publishing of the site and includes some of the main features such as landing page and registration logic.
+
+## Features
+As of now, the landing page layout is completely done other than me having to change all the placeholder text with the features of the actual site. The Contact Us section of the landingpage does not currently do anything but will in the future, however as of now it is not a priority. The other main features of this commit is the registration and login pages that have implemented logic for both validation and encryption. All the data is currently stored in localstorage and sessionstorage so all users are local to that specific device. The commit also includes a very basic layout of the userpage where the user will see all details about their activity but it is not implemented yet. *(Im aware of a bug that makes the userpage return a 404-error when entered from the login/registration sites but it will be changed in the next commit)*
+
+## Other
+The biggest problem I encountered during the creation of these features was the validation of passwords on the registration site. This was later fixed using both html regex patterns for the input tags and custom Javascript validation to show what the password should include as the user types. A code snippet of this can be seen below:
+
+```js
+function validate(){
+    hasUppercase = /[A-Z]/.test(pwInput.value);
+    hasLowercase = /[a-z]/.test(pwInput.value);
+    hasNumber = /[0-9]/.test(pwInput.value);
+    hasLength = pwInput.value.length >= 8;
+}
+``` 
+
+```html
+<input class="select-light" placeholder=" " type="{showPw ? 'text' : 'password'}" 
+    id="password" name="password" pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).&#123;8,&#125;$' 
+    on:keyup={validate} bind:this={pwInput} required/>
+
+<div class="pw-requirements select-light">
+    Password requirements
+    <span><span class="icon {hasLength ? 'checked' : ''}"></span> 8 or more total characters</span>
+    <span><span class="icon {hasUppercase ? 'checked' : ''}"></span> 1 Upper case letter</span>
+    <span><span class="icon {hasLowercase ? 'checked' : ''}"></span> 1 Lower case letter</span>
+    <span><span class="icon {hasNumber ? 'checked' : ''}"></span> 1 or more numbers</span>
+</div>
+```
+What this code snippet shows is how the validation function is called from the page and what elements are changed due to it. Svelte syntax is used but is not that easy to see due to the syntax highlighting limitations. It calls the validate function whenever the value of the password input changes to make sure the user knows what they already inputted in terms of the requirements *(uppercase/lowercase letters, atleast 8 characters long and has to include numbers)*. More info about this can be found on the github source under /src/routes/register/+page.svelte
+
+Commit: [Link to Github](https://github.com/nemoeriksson/nemoeriksson.github.io/commit/8d82ba2282c7b0e23cf798f0755e48bf12a9eb45)
+
+Published: 2023-04-24

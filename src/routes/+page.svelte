@@ -186,6 +186,8 @@ onMount(()=>{
         </div>
     </div>
 
+    <div class="waves-home"></div>
+
     <!-- ===== Project sections ===== -->
     <section class="projectContainer" id="projects">
         {#each projects as project}
@@ -447,6 +449,17 @@ a:hover{
     color: #e0e0e0;
 }
 
+.waves-home{
+    aspect-ratio: 960 / 100;
+    width: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url('/svgs/home1.svg');
+    transform: translateY(-30%);
+}
+
 #home{
     background: #EFEFEF;
     height: 100vh;
@@ -460,6 +473,20 @@ a:hover{
 .whiteText .linkText{
     color: #e0e0e0;
     border-color: #e0e0e0;
+}
+
+/* ===== SCROLLBAR ===== */
+body::-webkit-scrollbar{
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track-piece{
+    background: #1e2022;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: linear-gradient(to bottom, #EFEFEF, #e0e0e0);
+    border-radius: 1px;
 }
 
 /* ===== ANIMATIONS =====*/
@@ -551,7 +578,7 @@ a:hover{
 /* ===== RESPONSIVE: Phones =====*/
 
 @media only screen and (max-width: 599px){
-    nav{
+    nav, .waves-home{
         display: none;
     }
 

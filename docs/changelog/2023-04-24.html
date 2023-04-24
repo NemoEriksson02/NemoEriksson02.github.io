@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth; height: 100%; width: 100%;">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="content-security-policy" content="">
+		<link href="../_app/immutable/assets/_page-f2221541.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/start-bdeefdb0.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index-887a00a6.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-702bfc07.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper-b21cceae.js">
+		<link rel="modulepreload" href="../_app/immutable/components/layout.svelte-62a37b68.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/_layout.js-7b9cbfbc.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout-8d2a742b.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/changelog/_path_/_page.svelte-70818b44.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/changelog/_path_/_page.js-a818b5e8.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_page-35d3de45.js">
+	</head>
+	<body>
+		<div style="display: contents">
+
+
+<head class="svelte-u6pon9"><title class="svelte-u6pon9">Changelog 2023-04-4</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/tomorrow-night-bright.min.css" class="svelte-u6pon9">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" class="svelte-u6pon9"></script></head>
+
+
+<section class="topbar svelte-u6pon9"><a class="back svelte-u6pon9" href="/changelog">Return to changelog</a></section>
+
+<div class="background svelte-u6pon9"><article class="svelte-u6pon9"><h1 class="cl-title svelte-u6pon9">2023-04-4</h1>
+    <main class="svelte-u6pon9"><h2>Version 0.1.0</h2>
+<h1>Initial Creation and features</h1>
+<h2>Description</h2>
+<p>This is the intial publishing of the site and includes some of the main features such as landing page and registration logic.</p>
+<h2>Features</h2>
+<p>As of now, the landing page layout is completely done other than me having to change all the placeholder text with the features of the actual site. The Contact Us section of the landingpage does not currently do anything but will in the future, however as of now it is not a priority. The other main features of this commit is the registration and login pages that have implemented logic for both validation and encryption. All the data is currently stored in localstorage and sessionstorage so all users are local to that specific device. The commit also includes a very basic layout of the userpage where the user will see all details about their activity but it is not implemented yet. <em>(Im aware of a bug that makes the userpage return a 404-error when entered from the login/registration sites but it will be changed in the next commit)</em></p>
+<h2>Other</h2>
+<p>The biggest problem I encountered during the creation of these features was the validation of passwords on the registration site. This was later fixed using both html regex patterns for the input tags and custom Javascript validation to show what the password should include as the user types. A code snippet of this can be seen below:</p>
+<pre class="language-js"><!-- HTML_TAG_START --><code class="language-js"><span class="token keyword">function</span> <span class="token function">validate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    hasUppercase <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[A-Z]</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>pwInput<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hasLowercase <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[a-z]</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>pwInput<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hasNumber <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[0-9]</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>pwInput<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hasLength <span class="token operator">=</span> pwInput<span class="token punctuation">.</span>value<span class="token punctuation">.</span>length <span class="token operator">>=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<pre class="language-html"><!-- HTML_TAG_START --><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>select-light<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span> <span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;showPw ? 'text' : 'password'&#125;<span class="token punctuation">"</span></span> 
+    <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">pattern</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).<span class="token entity" title="&#123;">&amp;#123;</span>8,<span class="token entity" title="&#125;">&amp;#125;</span>$<span class="token punctuation">'</span></span> 
+    <span class="token attr-name"><span class="token namespace">on:</span>keyup</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>&#123;validate&#125;</span> <span class="token attr-name"><span class="token namespace">bind:</span>this</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>&#123;pwInput&#125;</span> <span class="token attr-name">required</span><span class="token punctuation">/></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pw-requirements select-light<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    Password requirements
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon &#123;hasLength ? 'checked' : ''&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> 8 or more total characters<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon &#123;hasUppercase ? 'checked' : ''&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> 1 Upper case letter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon &#123;hasLowercase ? 'checked' : ''&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> 1 Lower case letter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon &#123;hasNumber ? 'checked' : ''&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> 1 or more numbers<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>What this code snippet shows is how the validation function is called from the page and what elements are changed due to it. Svelte syntax is used but is not that easy to see due to the syntax highlighting limitations. It calls the validate function whenever the value of the password input changes to make sure the user knows what they already inputted in terms of the requirements <em>(uppercase/lowercase letters, atleast 8 characters long and has to include numbers)</em>. More info about this can be found on the github source under /src/routes/register/+page.svelte</p>
+<p>Commit: <a href="https://github.com/nemoeriksson/nemoeriksson.github.io/commit/8d82ba2282c7b0e23cf798f0755e48bf12a9eb45" rel="nofollow">Link to Github</a></p>
+<p>Published: 2023-04-24</p></main></article>
+</div>
+
+
+		<script type="module" data-sveltekit-hydrate="1sbvwnk">
+			import { start } from "../_app/immutable/start-bdeefdb0.js";
+
+			start({
+				env: {},
+				hydrate: {
+					status: 200,
+					error: null,
+					node_ids: [0, 4],
+					params: {path:"2023-04-24"},
+					route: {"id":"/changelog/[path]"},
+					data: [null,null],
+					form: null
+				},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="1sbvwnk"]').parentNode,
+				trailing_slash: "never",
+				version: "1682318843265"
+			});
+		</script>
+	</div>
+	</body>
+</html>
