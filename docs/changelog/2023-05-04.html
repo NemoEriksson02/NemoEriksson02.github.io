@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth; height: 100%; width: 100%;">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="content-security-policy" content="">
+		<link href="../_app/immutable/assets/_page-f2221541.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/start-d72d1197.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index-887a00a6.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-702bfc07.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/preload-helper-b21cceae.js">
+		<link rel="modulepreload" href="../_app/immutable/components/layout.svelte-62a37b68.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/_layout.js-7b9cbfbc.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout-8d2a742b.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/changelog/_path_/_page.svelte-70818b44.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/changelog/_path_/_page.js-16b17f2d.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_page-26577ced.js">
+	</head>
+	<body>
+		<div style="display: contents">
+
+
+<head class="svelte-u6pon9"><title class="svelte-u6pon9">Changelog 2023-05-04</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/tomorrow-night-bright.min.css" class="svelte-u6pon9">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" class="svelte-u6pon9"></script></head>
+
+
+<section class="topbar svelte-u6pon9"><a class="back svelte-u6pon9" href="/changelog">Return to changelog</a></section>
+
+<div class="background svelte-u6pon9"><article class="svelte-u6pon9"><h1 class="cl-title svelte-u6pon9">2023-05-04</h1>
+    <main class="svelte-u6pon9"><h2>Version 0.2.0</h2>
+<h1>Trading page and Changelog</h1>
+<h2>Description</h2>
+<p>In this update I added the changelog which looks really good imo and the new trading page where users can see graphs of the real-time price of multiple stocks <em>(more are coming in the future)</em>. Users will be able to buy stocks with their fake money on the site and keep stats over how their portfolio balance moves over time. </p>
+<h2>Features</h2>
+<p>The trade page is the biggest addition in this change and gives the users many stocks to choose between and see graphs of their price using the AlphaVantage API and the Highcharts.js library. The changelog gives the users an overview on the site of the changes that are made.</p>
+<h2>Other</h2>
+<p>The code snippet below shows how the page gets the price history of the stocks using the AlphaVantage API.</p>
+<pre class="language-js"><!-- HTML_TAG_START --><code class="language-js"><span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">&#96;</span><span class="token string">https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&amp;symbol=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>symbol<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">&amp;interval=5min&amp;apikey=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>key<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">&#96;</span></span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> responseData <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> stockData <span class="token operator">=</span> <span class="token keyword">await</span> responseData<span class="token punctuation">[</span><span class="token string">'Time Series (5min)'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token punctuation">[</span>key<span class="token punctuation">,</span>value<span class="token punctuation">]</span> <span class="token keyword">of</span> Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span>stockData<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    result<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">[</span>key<span class="token punctuation">,</span> <span class="token function">parseFloat</span><span class="token punctuation">(</span>value<span class="token punctuation">[</span><span class="token string">'1. open'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    i<span class="token operator">+=</span><span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+currentPrice <span class="token operator">=</span> result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+result <span class="token operator">=</span> result<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><!-- HTML_TAG_END --></pre>
+<p>I then create a graph of the price history of the target stock in a graph using the Highcharts JavaScript library as can be seen below.</p>
+<pre class="language-js"><!-- HTML_TAG_START --><code class="language-js">Highcharts<span class="token punctuation">.</span><span class="token function">chart</span><span class="token punctuation">(</span><span class="token string">'container'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">&#96;</span><span class="token string">Price history of </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>symbol<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> (USD)</span><span class="token template-punctuation string">&#96;</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">align</span><span class="token operator">:</span> <span class="token string">'left'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">subtitle</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">&#96;</span><span class="token string">Intradaily 5 minute interval</span><span class="token template-punctuation string">&#96;</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">align</span><span class="token operator">:</span> <span class="token string">'left'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">legend</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">enabled</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">yAxis</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">''</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">xAxis</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">labels</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">enabled</span><span class="token operator">:</span> <span class="token boolean">false</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">plotOptions</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">series</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">connectorAllowed</span><span class="token operator">:</span> <span class="token boolean">false</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">pointStart</span><span class="token operator">:</span> <span class="token number">0</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">series</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Price'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">data</span><span class="token operator">:</span> result<span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><!-- HTML_TAG_END --></pre>
+<p>AlphaVantage: <a href="https://www.alphavantage.co/documentation/" rel="nofollow">documentation</a></p>
+<p>Highcharts: <a href="https://www.highcharts.com/docs/index" rel="nofollow">documentation</a></p>
+<p>Commit: <a href="https://github.com/nemoeriksson/nemoeriksson.github.io/commit/8f238b128ecfaeb7ab9210e1e9656dc2a47c5c08" rel="nofollow">Link to Github</a></p>
+<p>Published: 2023-05-04</p></main></article>
+</div>
+
+
+		<script type="module" data-sveltekit-hydrate="xhfc3r">
+			import { start } from "../_app/immutable/start-d72d1197.js";
+
+			start({
+				env: {},
+				hydrate: {
+					status: 200,
+					error: null,
+					node_ids: [0, 4],
+					params: {path:"2023-05-04"},
+					route: {"id":"/changelog/[path]"},
+					data: [null,null],
+					form: null
+				},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="xhfc3r"]').parentNode,
+				trailing_slash: "never",
+				version: "1683207054611"
+			});
+		</script>
+	</div>
+	</body>
+</html>

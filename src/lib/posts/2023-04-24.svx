@@ -1,5 +1,5 @@
 ---
-date: "2023-04-4"
+date: "2023-04-04"
 points: [
     ["added", "Homepage with links to registration/login pages and contact section"],
     ["added", "Contact Us section (work in progress)"],

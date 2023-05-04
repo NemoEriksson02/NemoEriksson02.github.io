@@ -1,0 +1,87 @@
+---
+date: "2023-05-04"
+points: [
+    ["added", "Trade page with real-time stock prices using the AlphaVantage API"],
+    ["added", "Graph over live stock prices"],
+    ["added", "List of tradable stocks (more coming soon)"],
+    ["added", "Changelog page and link from homepage"],
+    ["added", "Link to full changelog on GitHub"],
+    ["fixed", "Replaced placeholder titles with new Innovocks name"],
+    ["fixed", "Links to the user page when making account or logging in no longer returns 404 error"],
+    ["fixed", "Selection of password requirements now follows the color scheme"],
+]
+---
+
+
+## Version 0.2.0
+# Trading page and Changelog
+
+## Description
+In this update I added the changelog which looks really good imo and the new trading page where users can see graphs of the real-time price of multiple stocks *(more are coming in the future)*. Users will be able to buy stocks with their fake money on the site and keep stats over how their portfolio balance moves over time. 
+
+## Features
+The trade page is the biggest addition in this change and gives the users many stocks to choose between and see graphs of their price using the AlphaVantage API and the Highcharts.js library. The changelog gives the users an overview on the site of the changes that are made.
+
+## Other
+The code snippet below shows how the page gets the price history of the stocks using the AlphaVantage API.
+
+```js
+const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${key}`;
+const response = await fetch(url);
+const responseData = await response.json();
+const stockData = await responseData['Time Series (5min)'];
+
+let i = 0
+for(const [key,value] of Object.entries(stockData)){
+    result.push([key, parseFloat(value['1. open'])]);
+    i+=5;
+}
+currentPrice = result[0][1];
+result = result.reverse();
+```
+
+I then create a graph of the price history of the target stock in a graph using the Highcharts JavaScript library as can be seen below.
+```js
+Highcharts.chart('container', {
+    title: {
+        text: `Price history of ${symbol} (USD)`,
+        align: 'left'
+    },
+    subtitle: {
+        text: `Intradaily 5 minute interval`,
+        align: 'left'
+    },
+    legend: {
+        enabled: false
+    },
+    yAxis: {
+        title: {
+            text: ''
+        }
+    },
+    xAxis: {
+        labels: {
+            enabled: false
+        }
+    },
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 0
+        }
+    },
+    series: [{
+        name: 'Price',
+        data: result,
+    }],
+});
+```
+AlphaVantage: [documentation](https://www.alphavantage.co/documentation/)
+
+Highcharts: [documentation](https://www.highcharts.com/docs/index)
+
+Commit: [Link to Github](https://github.com/nemoeriksson/nemoeriksson.github.io/commit/8f238b128ecfaeb7ab9210e1e9656dc2a47c5c08)
+
+Published: 2023-05-04
